@@ -1,0 +1,110 @@
+/* Fondo general */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-image: url('salas dis.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Layout principal */
+.reservas-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Barra superior */
+.navbar {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar h2 {
+  margin: 0;
+  color: #1e3a8a;
+}
+
+.acciones button {
+  margin-left: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.acciones .cerrar-sesion {
+  font-weight: bold;
+  color: #1e3a8a;
+}
+
+/* Contenedor principal */
+.reservas-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+/* Formulario */
+.formulario {
+  background-color: rgba(255, 255, 255, 0.92);
+  padding: 30px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+select, .calendar-dropdown button {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+.calendar-wrapper {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+
+.reservar-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.reservar-btn:hover {
+  background-color: #3b5ac1;
+}
+
+  

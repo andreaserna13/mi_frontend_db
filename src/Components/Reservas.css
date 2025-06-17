@@ -1,0 +1,232 @@
+body {
+  background-image: url('/salas dis.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la visibilidad del texto */
+}
+
+.reservas-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Mantén el contenido en la parte superior */
+  align-items: center;
+  padding: 20px 30px;
+  background: rgba(255, 255, 255, 0.85); /* Fondo blanco con algo de transparencia */
+  backdrop-filter: blur(5px);
+  border-radius: 15px;
+  width: 85%;
+  max-width: 900px;
+  max-height: 90vh; /* El contenedor no se va a estirar más que el 90% de la altura de la pantalla */
+  overflow-y: auto; /* Si hay más contenido, será desplazable verticalmente */
+  position: fixed; /* Mantenerlo fijo en la pantalla */
+  top: 50%; /* Centrado vertical */
+  left: 50%; /* Centrado horizontal */
+  transform: translate(-50%, -50%); /* Corrección para centrarlo completamente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombras suaves para darle un efecto flotante */
+}
+
+.reservas-header {
+  display: flex;
+  justify-content: space-between; /* Ajusta los elementos hacia los extremos */
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.titulo-principal {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  flex: 1; /* Hace que el título se ajuste correctamente */
+}
+
+.header-right {
+  display: flex;
+  gap: 10px;  /* Reduce el espacio entre los íconos */
+  align-items: center;
+}
+
+.notifications-button, .logout-button {
+  font-size: 18px;  /* Reducción del tamaño de los íconos */
+  background-color: #4032dc; /* Fondo morado para los botones */
+  color: white;
+  border: none;
+  padding: 8px 12px;  /* Reducir el padding para que los botones sean más pequeños */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transición para un hover más suave */
+}
+
+.notifications-button:hover, .logout-button:hover {
+  background-color: #3324b8; /* Fondo más oscuro al hacer hover */
+}
+
+.notifications-list {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  background: white;
+  color: black;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+}
+
+.form-section {
+  width: 100%;
+  max-width: 500px;
+}
+
+.form-section h2 {
+  margin-bottom: 10px;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.action-button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  background-color: hsl(249, 96%, 50%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Transición para suavizar el cambio de color */
+}
+
+.action-button:hover {
+  background-color: #142def;
+}
+
+.cancel-button {
+  background-color: #f44336;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+}
+
+.download-button {
+  background-color: #2196f3;
+}
+
+.download-button:hover {
+  background-color: #1976d2;
+}
+
+.error-message {
+  margin-top: 10px;
+  color: red;
+  background: #ffe6e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.admin-container {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f4f4f4;
+  border-radius: 5px;
+}
+
+.admin-reservas {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-sala {
+  margin-bottom: 20px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.3s ease; /* Suaviza la transición del color al pasar el ratón */
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.admin-sala ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.admin-sala li {
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  

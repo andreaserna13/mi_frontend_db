@@ -1,0 +1,72 @@
+/* LoginAdmin.css */
+.login-admin-page {
+  background: url('/sala-de-reunion.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Contenedor del login */
+.login-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro translúcido */
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  color: white;
+}
+
+/* Caja del formulario */
+.login-box h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: white;
+  text-align: center;
+}
+
+/* Campos de entrada, select y botón */
+.login-box input,
+.login-box select,
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* Botón de login */
+.login-box button {
+  background-color: #074fea;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.login-box button:hover {
+  background-color: #0756e4;
+}
+
+/* Enlaces (si los agregas después) */
+.links a {
+  color: #074fea;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+
+
+
+
+  

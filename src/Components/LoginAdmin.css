@@ -1,0 +1,61 @@
+/* LoginAdmin.css */
+
+/* ... (Todo el CSS que ya tienes para .login-admin-page, .login-container, etc., va aquí) ... */
+
+
+/* === ESTILOS CLAVE PARA EL CAMPO DE CONTRASEÑA Y EL OJO === */
+
+.password-container {
+    position: relative; /* ¡CRUCIAL! Esto permite que el 'absolute' del ojo se posicione respecto a este contenedor */
+    display: flex; /* Ayuda a que el input ocupe el espacio y se vea el fondo blanco */
+    align-items: center; /* Centra verticalmente el contenido del contenedor */
+    border: 1px solid #ccc; /* El borde visible del campo de contraseña */
+    border-radius: 4px; /* Bordes redondeados */
+    background-color: white; /* Fondo del "campo" de contraseña */
+    /* El width ya lo hereda de .login-box input/select/button que es 100% */
+}
+
+.password-container input {
+    width: 100%; /* El input ocupa casi todo el ancho del contenedor */
+    padding: 12px; /* Mantener el padding general de los otros inputs */
+    padding-right: 35px; /* ¡CLAVE! Deja espacio a la DERECHA para el icono del ojo */
+    /* padding-left: 12px; */ /* Si quieres que tenga el mismo padding izquierdo que los otros inputs, puedes añadirlo */
+    border: none; /* Elimina el borde nativo del input para que el '.password-container' se encargue */
+    outline: none; /* Quita el contorno al enfocar */
+    font-size: 15px; /* Mantener el tamaño de fuente de los otros inputs */
+    background-color: transparent; /* ¡MUY IMPORTANTE! Para que se vea el fondo blanco del .password-container */
+    color: black; /* Color del texto de la contraseña */
+    box-sizing: border-box; /* Incluye padding en el width total del input */
+}
+
+.toggle-password {
+    position: absolute; /* ¡CLAVE! Posiciona el icono de forma flotante */
+    right: 10px;        /* ¡CLAVE! Coloca el icono a 10px del borde DERECHO del .password-container */
+    top: 50%;           /* Coloca la parte superior del icono a la mitad de la altura del contenedor */
+    transform: translateY(-50%); /* Ajusta el icono hacia arriba la mitad de su propia altura para centrarlo verticalmente */
+    cursor: pointer;
+    font-size: 20px; /* Tamaño del icono (ajusta si es muy grande/pequeño) */
+    color: #555;        /* Color del icono */
+    user-select: none;
+    z-index: 2; /* Asegura que el icono esté por encima del input si hay superposiciones */
+    /* display: flex; */ /* Estas propiedades son menos cruciales para el posicionamiento absoluto */
+    /* align-items: center; */
+    /* height: 100%; */
+}
+
+.toggle-password:hover {
+    color: #000;
+}
+
+/* Estilos para el mensaje de error (si no lo tienes ya en alguna parte) */
+.error-message {
+    color: #ffcccc; /* Un rojo claro para los errores */
+    background-color: rgba(255, 0, 0, 0.2); /* Fondo semitransparente para el error */
+    border: 1px solid red;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9em;
+}
+

@@ -1,0 +1,31 @@
+/* PermisosForm.css */
+.permisos-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo translúcido */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .permisos-container select,
+  .permisos-container button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .permisos-container button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .permisos-container button:hover {
+    background-color: #45a049;
+  }
+  

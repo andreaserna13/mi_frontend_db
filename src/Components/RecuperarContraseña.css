@@ -1,0 +1,66 @@
+/* RecuperarContraseña.css */
+.recuperar-container {
+  position: fixed; /* Para centrar en pantalla completa */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centra exactamente */
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  font-family: Arial, sans-serif;
+  backdrop-filter: blur(8px); /* Hace que el fondo sea borroso (opcional) */
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.recuperar-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #074fea;
+}
+
+.recuperar-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.recuperar-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #074fea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.recuperar-container button:hover {
+  background-color: #0756e4;
+}
+
+.recuperar-container p {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: green;
+}
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
