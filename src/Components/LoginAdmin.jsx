@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { iniciarSesion } from '../service/useService';
 import './LoginAdmin.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import './reservas.css';
+
 
 const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
   const [usuario, setUsuario] = useState('');
