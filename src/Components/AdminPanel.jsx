@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './reservas.css';
 
+
 const AdminPanel = ({ setLogueado, setTipoUsuario }) => {
   const [section, setSection] = useState(null);
   const navigate = useNavigate();
