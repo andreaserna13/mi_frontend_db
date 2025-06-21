@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.5.0",
     "axios": "^1.9.0",
     "cors": "^2.8.5",
     "icons": "^1.0.0",
