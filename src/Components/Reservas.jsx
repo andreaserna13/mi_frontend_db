@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
-import './reservas.css';
-
+import './Reservas.css';
 
 const Reservas = ({ tipoUsuario, setLogueado, setTipoUsuario }) => { // recibimos setLogueado y setTipoUsuario
   const [showNotifications, setShowNotifications] = useState(false);

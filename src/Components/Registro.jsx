@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { registrarUsuario } from '../service/useService'; // ✅ servicio centralizado
 
 const Registro = () => {
   const navigate = useNavigate();
@@ -9,6 +8,8 @@ const Registro = () => {
   const [confirmarContrasena, setConfirmarContrasena] = useState('');
   const [tipoUsuario, setTipoUsuario] = useState('usuario');
   const [error, setError] = useState('');
+
+  const URL_BACKEND = import.meta.env.VITE_API_BASE_URL; // ✅ LÍNEA AÑADIDA
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,13 +21,19 @@ const Registro = () => {
     }
 
     try {
-      const res = await registrarUsuario(usuario, contrasena, tipoUsuario); // ✅ uso del servicio
+      const res = await fetch(`${URL_BACKEND}/api/usuario/registro`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre: usuario, clave: contrasena, tipoUsuario }),
+      });
 
-      if (res.mensaje?.toLowerCase().includes('registrado')) {
-        alert(res.mensaje || 'Registro exitoso');
+      const data = await res.json();
+
+      if (res.ok) {
+        alert(data.mensaje || 'Registro exitoso');
         navigate('/');
       } else {
-        setError(res.mensaje || 'Error al registrar usuario');
+        setError(data.error || 'Error al registrar usuario');
       }
     } catch (error) {
       setError('Error de conexión con el servidor');
@@ -88,6 +95,7 @@ const Registro = () => {
 };
 
 export default Registro;
+
 
 
 

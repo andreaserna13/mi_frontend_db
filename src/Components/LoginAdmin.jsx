@@ -5,6 +5,7 @@ import './LoginAdmin.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './reservas.css';
 
+
 const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
   const [usuario, setUsuario] = useState('');
   const [clave, setClave] = useState('');
@@ -20,6 +21,7 @@ const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
     setCargando(true);
     try {
       const resultado = await iniciarSesion(usuario, clave, tipoUsuarioState);
+
       if (resultado.exito) {
         if (resultado.token) localStorage.setItem('token', resultado.token);
         setLogueado(true);
@@ -67,6 +69,7 @@ const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
               <input
                 id="password"
                 type={mostrarClave ? 'text' : 'password'}
+                placeholder="Contraseña"
                 value={clave}
                 onChange={(e) => setClave(e.target.value)}
                 required
