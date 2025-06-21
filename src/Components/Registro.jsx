@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { registrarUsuario } from '../service/useService'; // ✅ servicio centralizado
 
 const Registro = () => {
   const navigate = useNavigate();
@@ -10,33 +11,27 @@ const Registro = () => {
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError('');
+    e.preventDefault();
+    setError('');
 
-  if (contrasena !== confirmarContrasena) {
-    setError('Las contraseñas no coinciden');
-    return;
-  }
-
-  try {
-    const res = await fetch('http://localhost:3001/api/usuario/registro', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nombre: usuario, clave: contrasena, tipoUsuario }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      alert(data.mensaje || 'Registro exitoso');  // <-- Aquí es el único cambio
-      navigate('/');
-    } else {
-      setError(data.error || 'Error al registrar usuario');
+    if (contrasena !== confirmarContrasena) {
+      setError('Las contraseñas no coinciden');
+      return;
     }
-  } catch (error) {
-    setError('Error de conexión con el servidor');
-  }
-};
+
+    try {
+      const res = await registrarUsuario(usuario, contrasena, tipoUsuario); // ✅ uso del servicio
+
+      if (res.mensaje?.toLowerCase().includes('registrado')) {
+        alert(res.mensaje || 'Registro exitoso');
+        navigate('/');
+      } else {
+        setError(res.mensaje || 'Error al registrar usuario');
+      }
+    } catch (error) {
+      setError('Error de conexión con el servidor');
+    }
+  };
 
   return (
     <div className="login-container">
@@ -93,7 +88,6 @@ const Registro = () => {
 };
 
 export default Registro;
-
 
 
 

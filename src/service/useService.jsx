@@ -1,10 +1,12 @@
+const API_URL = import.meta.env.PROD
+  ? 'https://TUNNEL-NGROK.ngrok-free.app' // reemplaza con tu URL de ngrok activa
+  : '';
+
 export const iniciarSesion = async (nombre, clave, tipoUsuario) => {
   try {
-    const response = await fetch('http://localhost:3001/api/auth/login', {
+    const response = await fetch(`${API_URL}/api/auth/login`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nombre, clave, tipoUsuario }),
     });
 
@@ -14,6 +16,9 @@ export const iniciarSesion = async (nombre, clave, tipoUsuario) => {
     return { exito: false, mensaje: 'Error en la conexión con el servidor' };
   }
 };
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RecuperarContraseña.css';
+import { recuperarContrasena } from '../service/useService'; // ✅ importamos servicio
 
 function RecuperarContraseña() {
   const [correo, setCorreo] = useState('');
@@ -12,15 +13,9 @@ function RecuperarContraseña() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/api/auth/recuperar-contrasena', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo }),
-      });
+      const data = await recuperarContrasena(correo); // ✅ usamos servicio
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (data.mensaje?.toLowerCase().includes('enviado')) {
         setMensaje(data.mensaje || 'Correo enviado con instrucciones');
         setError(false);
         setCorreo('');
@@ -28,7 +23,7 @@ function RecuperarContraseña() {
         setMensaje(data.mensaje || 'Error al enviar el correo');
         setError(true);
       }
-    } catch (error) {
+    } catch {
       setMensaje('Error al enviar el correo');
       setError(true);
     }
