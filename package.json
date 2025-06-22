@@ -16,5 +16,18 @@
   "devDependencies": {
     "@vitejs/plugin-react-swc": "^3.3.2",
     "vite": "^5.2.0"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andreaserna13/mi_frontend_db.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andreaserna13/mi_frontend_db/issues"
+  },
+  "homepage": "https://github.com/andreaserna13/mi_frontend_db#readme"
 }
