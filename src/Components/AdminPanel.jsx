@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './reservas.css';
+import './Reservas.css';
 
 
 const AdminPanel = ({ setLogueado, setTipoUsuario }) => {
