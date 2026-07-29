@@ -1,29 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 
-const Navbar = () => {
+function Navbar() {
   return (
     <nav className="navbar">
-      <ul>
-        <li>
-          <Link to="/">Inicio</Link>
-        </li>
-        <li>
-          <Link to="/reservas">Reservas</Link>
-        </li>
-        <li>
-          <Link to="/conversor">Conversor</Link>
-        </li>
-        <li>
-          <Link to="/registro">Registro</Link>
-        </li>
-        <li>
-          <Link to="/recuperar-contraseña">Recuperar Contraseña</Link>
-        </li>
+      <div className="logo">
+        SmartReserve
+      </div>
+
+      <ul className="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#caracteristicas">Características</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
+
+      <Link to="/login" className="login-btn">
+        Iniciar sesión
+      </Link>
     </nav>
   );
-};
+}
 
 export default Navbar;
 

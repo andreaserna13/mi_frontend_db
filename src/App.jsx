@@ -1,21 +1,32 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import './App.css';
-import Login from './Components/Login';
-import Reservas from './Components/Reservas';
-import AdminPanel from './Components/AdminPanel';
-import RecuperarContraseña from './Components/RecuperarContraseña'; 
-import Registro from './Components/Registro';
-import PermisosForm from './Components/PermisosForm';
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
+import "./App.css";
+
+// Páginas
+import LandingPage from "./Pages/LandingPage";
+
+// Componentes
+import Login from "./Components/Login";
+import Reservas from "./Components/Reservas";
+import AdminPanel from "./Components/AdminPanel";
+import RecuperarContraseña from "./Components/RecuperarContraseña";
+import Registro from "./Components/Registro";
+import PermisosForm from "./Components/PermisosForm";
 
 function App() {
   const [logueado, setLogueado] = useState(false);
-  const [tipoUsuario, setTipoUsuario] = useState('');
+  const [tipoUsuario, setTipoUsuario] = useState("");
 
   useEffect(() => {
-    // Al montar, revisa si hay token y tipoUsuario guardados
-    const token = localStorage.getItem('token');
-    const tipo = localStorage.getItem('tipoUsuario');
+    const token = localStorage.getItem("token");
+    const tipo = localStorage.getItem("tipoUsuario");
+
     if (token && tipo) {
       setLogueado(true);
       setTipoUsuario(tipo);
@@ -25,90 +36,85 @@ function App() {
   return (
     <Router>
       <Routes>
+
+        {/* Página principal */}
+        <Route path="/" element={<LandingPage />} />
+
+        {/* Login */}
         <Route
-          path="/"
+          path="/login"
           element={
             <Login
               logueado={logueado}
               tipoUsuario={tipoUsuario}
-              setLogueado={(val) => {
-                setLogueado(val);
-                if (!val) { // Al cerrar sesión limpia localStorage
-                  localStorage.removeItem('token');
-                  localStorage.removeItem('tipoUsuario');
+              setLogueado={(valor) => {
+                setLogueado(valor);
+
+                if (!valor) {
+                  localStorage.removeItem("token");
+                  localStorage.removeItem("tipoUsuario");
                 }
               }}
               setTipoUsuario={(tipo) => {
                 setTipoUsuario(tipo);
-                if (tipo) localStorage.setItem('tipoUsuario', tipo);
-                else localStorage.removeItem('tipoUsuario');
+
+                if (tipo) {
+                  localStorage.setItem("tipoUsuario", tipo);
+                } else {
+                  localStorage.removeItem("tipoUsuario");
+                }
               }}
             />
           }
         />
-        <Route 
-          path="/reservas" 
+
+        {/* Reservas */}
+        <Route
+          path="/reservas"
           element={
             logueado ? (
-              <Reservas 
+              <Reservas
                 tipoUsuario={tipoUsuario}
                 setLogueado={setLogueado}
                 setTipoUsuario={setTipoUsuario}
               />
-            ) : <Navigate to="/" />
-          } 
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
-        <Route 
-          path="/admin" 
+
+        {/* Administrador */}
+        <Route
+          path="/admin"
           element={
-            logueado && tipoUsuario === 'admin' ? (
-              <AdminPanel 
+            logueado && tipoUsuario === "admin" ? (
+              <AdminPanel
                 tipoUsuario={tipoUsuario}
                 setLogueado={setLogueado}
                 setTipoUsuario={setTipoUsuario}
               />
-            ) : <Navigate to="/" />
-          } 
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
         />
-        <Route path="/recuperar-contraseña" element={<RecuperarContraseña />} />
+
+        {/* Recuperar contraseña */}
+        <Route
+          path="/recuperar-contraseña"
+          element={<RecuperarContraseña />}
+        />
+
+        {/* Registro */}
         <Route path="/registro" element={<Registro />} />
+
+        {/* Formulario de permisos */}
         <Route path="/permisos" element={<PermisosForm />} />
+
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
