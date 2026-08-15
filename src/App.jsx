@@ -1,119 +1,53 @@
-import { useState, useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./App.css";
-
-// Páginas
 import LandingPage from "./Pages/LandingPage";
-
-// Componentes
-import Login from "./Components/Login";
-import Reservas from "./Components/Reservas";
-import AdminPanel from "./Components/AdminPanel";
-import RecuperarContraseña from "./Components/RecuperarContraseña";
+import Login from "./Pages/Login";
 import Registro from "./Components/Registro";
-import PermisosForm from "./Components/PermisosForm";
+import Dashboard from "./Pages/Dashboard";
 
+import Reservar from "./Pages/Reservar";
+import Calendario from "./Pages/Calendario";
+import MisReservas from "./Pages/MisReservas";
+import Configuracion from "./Pages/Configuracion";
+import Notificaciones from "./Pages/Notificaciones";
+
+import EditarPerfil from "./Pages/EditarPerfil";
+import CambiarPassword from "./Pages/CambiarPassword";
+import RecuperarContrasena from "./Components/RecuperarContraseña";
 function App() {
-  const [logueado, setLogueado] = useState(false);
-  const [tipoUsuario, setTipoUsuario] = useState("");
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const tipo = localStorage.getItem("tipoUsuario");
-
-    if (token && tipo) {
-      setLogueado(true);
-      setTipoUsuario(tipo);
-    }
-  }, []);
-
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
 
-        {/* Página principal */}
         <Route path="/" element={<LandingPage />} />
 
-        {/* Login */}
-        <Route
-          path="/login"
-          element={
-            <Login
-              logueado={logueado}
-              tipoUsuario={tipoUsuario}
-              setLogueado={(valor) => {
-                setLogueado(valor);
+        <Route path="/login" element={<Login />} />
 
-                if (!valor) {
-                  localStorage.removeItem("token");
-                  localStorage.removeItem("tipoUsuario");
-                }
-              }}
-              setTipoUsuario={(tipo) => {
-                setTipoUsuario(tipo);
-
-                if (tipo) {
-                  localStorage.setItem("tipoUsuario", tipo);
-                } else {
-                  localStorage.removeItem("tipoUsuario");
-                }
-              }}
-            />
-          }
-        />
-
-        {/* Reservas */}
-        <Route
-          path="/reservas"
-          element={
-            logueado ? (
-              <Reservas
-                tipoUsuario={tipoUsuario}
-                setLogueado={setLogueado}
-                setTipoUsuario={setTipoUsuario}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-
-        {/* Administrador */}
-        <Route
-          path="/admin"
-          element={
-            logueado && tipoUsuario === "admin" ? (
-              <AdminPanel
-                tipoUsuario={tipoUsuario}
-                setLogueado={setLogueado}
-                setTipoUsuario={setTipoUsuario}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-
-        {/* Recuperar contraseña */}
-        <Route
-          path="/recuperar-contraseña"
-          element={<RecuperarContraseña />}
-        />
-
-        {/* Registro */}
         <Route path="/registro" element={<Registro />} />
 
-        {/* Formulario de permisos */}
-        <Route path="/permisos" element={<PermisosForm />} />
+        <Route
+          path="/recuperar-password"
+          element={<RecuperarContrasena />}
+        />
+
+        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route path="/reservar" element={<Reservar />} />
+
+        <Route path="/calendario" element={<Calendario />} />
+
+        <Route path="/misreservas" element={<MisReservas />} />
+
+        <Route path="/configuracion" element={<Configuracion />} />
+
+        <Route path="/editar-perfil" element={<EditarPerfil />} />
+
+        <Route path="/cambiar-password" element={<CambiarPassword />} />
+
+        <Route path="/notificaciones" element={<Notificaciones />} />
 
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

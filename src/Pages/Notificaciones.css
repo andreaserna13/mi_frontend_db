@@ -1,0 +1,198 @@
+.notificaciones-page {
+
+    min-height: 100vh;
+    background: #f4f7fb;
+    padding: 30px;
+
+}
+
+
+
+.notificaciones-header {
+
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    margin-bottom: 30px;
+
+}
+
+
+
+.btn-volver {
+
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 20px;
+
+}
+
+
+
+.btn-volver:hover {
+
+    background: #1d4ed8;
+
+}
+
+
+
+.notificaciones-header h1 {
+
+    margin: 0;
+    font-size: 32px;
+    color: #1e293b;
+
+}
+
+
+
+.notificaciones-header p {
+
+    color: #64748b;
+    margin-top: 10px;
+
+}
+
+
+
+
+.notificaciones-container {
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+
+
+
+.notificacion-card {
+
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+    border-left: 6px solid #2563eb;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+
+.notificacion-card:hover {
+
+    transform: translateY(-4px);
+
+}
+
+
+
+
+.notificacion-top {
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+}
+
+
+
+.icono-notificacion {
+
+    width: 55px;
+    height: 55px;
+
+    background: #eff6ff;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 28px;
+
+}
+
+
+
+
+.notificacion-title h3 {
+
+    margin: 0;
+    color: #1e293b;
+    font-size: 20px;
+
+}
+
+
+
+
+.estado-notificacion {
+
+    display: inline-block;
+
+    margin-top: 6px;
+
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    background: #dcfce7;
+
+    color: #166534;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+
+
+.mensaje-notificacion {
+
+    color: #475569;
+
+    font-size: 16px;
+
+}
+
+
+
+
+.datos-reserva {
+
+    background: #f8fafc;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+}
+
+
+
+.datos-reserva p {
+
+    margin: 8px 0;
+
+    color: #334155;
+
+}

@@ -1,0 +1,171 @@
+.editar-container {
+
+    min-height: 100vh;
+
+    padding: 40px;
+
+    background: #f1f5f9;
+
+}
+
+
+
+.editar-header {
+
+    max-width: 900px;
+
+    margin: auto;
+
+    text-align: center;
+
+}
+
+
+
+.btn-volver {
+
+    background: transparent;
+
+    border: none;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    margin-bottom: 20px;
+
+    color: #2563eb;
+
+}
+
+
+
+.editar-header h1 {
+
+    color: #1e3a8a;
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.editar-header p {
+
+    color: #64748b;
+
+}
+
+
+
+
+
+.editar-card {
+
+    background: white;
+
+    max-width: 500px;
+
+    margin: 40px auto;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+}
+
+
+
+.editar-card h2 {
+
+    text-align: center;
+
+    color: #1e293b;
+
+    margin-bottom: 30px;
+
+}
+
+
+
+
+
+.editar-card label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+}
+
+
+
+
+
+.editar-card input {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    border: 1px solid #cbd5e1;
+
+    font-size: 15px;
+
+}
+
+
+
+
+
+.editar-card input:focus {
+
+    outline: none;
+
+    border-color: #2563eb;
+
+}
+
+
+
+
+
+.btn-guardar {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+
+.btn-guardar:hover {
+
+    background: #1d4ed8;
+
+}

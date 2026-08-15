@@ -1,0 +1,265 @@
+.login-page {
+
+  min-height:100vh;
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+ background-image:
+ linear-gradient(
+  rgba(15,23,42,0.35),
+  rgba(37,99,235,0.25)
+),
+url("../assets/smartreserve.png");
+
+  background-size:cover;
+
+  background-position:center;
+
+}
+
+
+/* TARJETA */
+
+.login-box {
+
+  width:380px;
+
+  padding:45px;
+
+  background:rgba(255,255,255,0.95);
+
+  border-radius:25px;
+
+  text-align:center;
+
+  box-shadow:
+  0 20px 40px rgba(0,0,0,0.25);
+
+}
+
+
+
+/* TITULO */
+
+
+.login-box h1 {
+
+  color:#2563eb;
+
+  font-size:38px;
+
+  margin-bottom:10px;
+
+}
+
+
+.login-box h2 {
+
+  color:#1e293b;
+
+  margin-bottom:30px;
+
+}
+
+
+
+
+/* CAMPOS */
+
+
+.login-box input {
+
+  width:100%;
+
+  padding:14px;
+
+  margin-bottom:15px;
+
+  border-radius:10px;
+
+  border:1px solid #cbd5e1;
+
+  font-size:16px;
+
+  box-sizing:border-box;
+
+}
+
+
+
+
+/* BOTON */
+
+
+.login-box button {
+
+  width:100%;
+
+  padding:14px;
+
+  background:#2563eb;
+
+  color:white;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:17px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+  transition:.3s;
+
+}
+
+
+
+.login-box button:hover {
+
+  background:#1d4ed8;
+
+  transform:translateY(-2px);
+
+}
+
+
+
+
+.login-box p {
+
+  margin-top:25px;
+
+  color:#64748b;
+
+}
+
+.login-links{
+
+margin-top:22px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+.login-links a{
+
+color:#2563eb;
+
+font-weight:600;
+
+text-decoration:none;
+
+}
+
+.login-links a:hover{
+
+text-decoration:underline;
+
+}
+/* Select igual a los inputs */
+
+.login-select{
+
+width:100%;
+
+padding:14px;
+
+margin-bottom:15px;
+
+border-radius:10px;
+
+border:1px solid #cbd5e1;
+
+font-size:16px;
+
+box-sizing:border-box;
+
+background:white;
+
+}
+
+/* Enlace de recuperar */
+
+.forgot-password{
+
+text-align:right;
+
+margin:-5px 0 18px;
+
+}
+
+.forgot-password a{
+
+color:#2563eb;
+
+font-size:14px;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.forgot-password a:hover{
+
+color:#1d4ed8;
+
+text-decoration:underline;
+
+}
+
+/* Texto del registro */
+
+.register-text{
+
+margin-top:25px;
+
+color:#64748b;
+
+}
+
+.register-text a{
+
+color:#2563eb;
+
+font-weight:bold;
+
+text-decoration:none;
+
+}
+
+.register-text a:hover{
+
+text-decoration:underline;
+
+}
+/* Enlace recuperar contraseña */
+
+.forgot-password{
+  margin-top:15px;
+  margin-bottom:5px;
+  text-align:center;
+}
+
+.forgot-password a{
+  color:#2563eb;
+  font-weight:600;
+  text-decoration:none;
+}
+
+.forgot-password a:hover{
+  text-decoration:underline;
+}
