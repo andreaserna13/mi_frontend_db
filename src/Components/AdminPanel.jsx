@@ -437,7 +437,7 @@ const AdminPanel = () => {
     }
 
     if (nuevaClave !== confirmarClave) {
-      alert("Las contraseÃ±as no coinciden.");
+      alert("Las contraseñas no coinciden.");
       return;
     }
 
@@ -2244,12 +2244,12 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      ContraseÃ±a
+                      contraseña
                     </label>
 
                     <input
                       type="password"
-                      placeholder="Ingresa la contraseÃ±a"
+                      placeholder="Ingresa la contraseña"
                       value={
                         nuevaClave
                       }
@@ -2266,12 +2266,12 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      Confirmar contraseÃ±a
+                      Confirmar contraseña
                     </label>
 
                     <input
                       type="password"
-                      placeholder="Confirma la contraseÃ±a"
+                      placeholder="Confirma la contraseña"
                       value={
                         confirmarClave
                       }
@@ -2334,7 +2334,7 @@ const AdminPanel = () => {
                         Estos datos serán
                         utilizados para
                         recuperar la
-                        contraseÃ±a.
+                        contraseña.
                       </span>
 
                     </div>
@@ -2842,6 +2842,7 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
+
 
 
 
