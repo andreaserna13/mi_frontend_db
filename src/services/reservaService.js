@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const API = "http://localhost:3001/api/reservas";
+const API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL ||
+    "http://localhost:3001/api";
+
+const API = `${API_BASE_URL}/reservas`;
 
 export const obtenerReservas = async () => {
     const response = await axios.get(API);
