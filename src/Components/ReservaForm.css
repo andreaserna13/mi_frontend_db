@@ -1,0 +1,149 @@
+/* =====================================================
+   SMARTRESERVE - FORMULARIO RESERVA
+===================================================== */
+
+.reserva-card{
+
+    max-width:560px;
+    margin:auto;
+}
+
+.reserva-titulo{
+
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.reserva-titulo h2{
+
+    margin:0 0 10px;
+    color:#1E293B;
+    font-size:28px;
+}
+
+.reserva-titulo p{
+
+    margin:0;
+    color:#64748B;
+}
+
+.reserva-form{
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.campo{
+
+    display:flex;
+    flex-direction:column;
+}
+
+.campo label{
+
+    margin-bottom:8px;
+    font-weight:600;
+    color:#334155;
+}
+
+.campo input,
+.campo select,
+.campo textarea{
+
+    width:100%;
+    padding:13px 14px;
+    box-sizing:border-box;
+
+    border:1px solid #D6DEE5;
+    border-radius:10px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus{
+
+    border-color:#58718A;
+    box-shadow:0 0 0 4px rgba(88,113,138,.10);
+}
+
+.campo textarea{
+
+    resize:vertical;
+}
+
+.resumen{
+
+    background:#F8FAFC;
+    border:1px solid #E5E7EB;
+    border-radius:16px;
+    padding:18px;
+}
+
+.resumen h3{
+
+    margin:0 0 15px;
+    color:#334E68;
+}
+
+.fila{
+
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid #E5E7EB;
+}
+
+.fila:last-child{
+
+    border-bottom:none;
+}
+
+.fila span{
+
+    color:#64748B;
+}
+
+.fila strong{
+
+    color:#1E293B;
+}
+
+.btn-reservar{
+
+    padding:14px;
+    border:none;
+    border-radius:10px;
+
+    background:linear-gradient(135deg,#334E68,#243B53);
+
+    color:white;
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.btn-reservar:hover{
+
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(36,59,83,.20);
+}
+
+.error-message{
+
+    background:#FEF2F2;
+    border:1px solid #FECACA;
+    color:#B91C1C;
+    padding:12px;
+    border-radius:10px;
+    text-align:center;
+}

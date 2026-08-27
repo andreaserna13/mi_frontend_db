@@ -1,42 +1,42 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ReservaForm from "../Components/ReservaForm";
-import "./Page.css";
+import "./Reservar.css";
 
 function Reservar() {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    return (
+  return (
 
-        <div className="page-container">
+    <div className="page-container">
 
-            <div className="page-header">
+      <div className="page-header">
 
-                <button
-                    className="btn-volver"
-                    onClick={() => navigate(-1)}
-                >
-                    ← Volver
-                </button>
+        <button
+          className="btn-volver"
+          onClick={() => navigate(-1)}
+        >
+          ← Volver
+        </button>
 
-                <h1>📅 Reservar sala</h1>
+        <h1>📅 Nueva Reserva</h1>
 
-                <p>
-                    Selecciona la información de tu reserva y confirma la disponibilidad.
-                </p>
+        <p>
+          Selecciona la información de tu reserva y confirma la disponibilidad.
+        </p>
 
-            </div>
+      </div>
 
-            <div className="page-card">
+      <div className="page-card">
 
-                <ReservaForm />
+        <ReservaForm />
 
-            </div>
+      </div>
 
-        </div>
+    </div>
 
-    );
+  );
 
 }
 

@@ -1,0 +1,85 @@
+/* =====================================================
+   SMARTRESERVE - RESERVAR
+===================================================== */
+
+.page-container{
+
+    min-height:100vh;
+    padding:45px;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+
+    background:
+    radial-gradient(circle at 15% 20%, rgba(51,78,104,.06), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(100,116,139,.05), transparent 30%),
+    linear-gradient(135deg,#EEF3F7,#F8FAFC);
+}
+
+.page-header{
+
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:30px;
+    box-shadow:0 14px 35px rgba(30,41,59,.06);
+}
+
+.page-header h1{
+
+    margin:18px 0 10px;
+    color:#1E293B;
+    font-size:34px;
+}
+
+.page-header p{
+
+    margin:0;
+    color:#64748B;
+}
+
+.btn-volver{
+
+    border:1px solid #D6DEE5;
+    background:white;
+    color:#526476;
+    padding:11px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-volver:hover{
+
+    background:#F7F9FB;
+    color:#334E68;
+}
+
+.page-card{
+
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:22px;
+    padding:35px;
+    box-shadow:0 12px 28px rgba(30,41,59,.05);
+}
+
+@media(max-width:768px){
+
+    .page-container{
+
+        padding:25px 18px;
+    }
+
+    .page-header{
+
+        padding:24px;
+    }
+
+    .page-card{
+
+        padding:22px;
+    }
+
+}

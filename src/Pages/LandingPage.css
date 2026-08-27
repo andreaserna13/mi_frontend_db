@@ -8,14 +8,14 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:'Poppins',sans-serif;
     background:#F8FAFC;
     color:#1E293B;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 .landing{
@@ -27,91 +27,65 @@ html{
 =========================================================*/
 
 .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
 
-    width:100%;
+    background:
+        linear-gradient(rgba(15,23,42,.35),rgba(15,23,42,.35)),
+        url("../assets/smartreserve.png");
 
-    background:linear-gradient(135deg,#2563EB,#1E3A8A);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 
     color:white;
-
-    padding:140px 8% 100px;
-
+    padding:120px 8% 80px;
 }
 
 .hero-content{
-
-    max-width:1300px;
-
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:900px;
     margin:auto;
-
+    text-align:center;
     display:flex;
-
-    justify-content:space-between;
-
+    flex-direction:column;
     align-items:center;
-
-    gap:70px;
-
-}
-
-.hero-text{
-
-    flex:1;
-
+    gap:25px;
 }
 
 .hero-badge{
-
     display:inline-block;
-
     padding:10px 22px;
-
     background:rgba(255,255,255,.15);
-
     border:1px solid rgba(255,255,255,.30);
-
     border-radius:50px;
-
     font-size:15px;
-
-    margin-bottom:30px;
-
+    backdrop-filter:blur(8px);
 }
 
 .hero h1{
-
-    font-size:62px;
-
-    line-height:1.1;
-
-    margin-bottom:18px;
-
+    font-size:72px;
+    line-height:1.05;
     font-weight:700;
-
 }
 
 .hero h2{
-
-    font-size:35px;
-
+    font-size:30px;
     font-weight:400;
-
-    margin-bottom:30px;
-
 }
 
 .hero p{
-
+    max-width:700px;
+    margin:0 auto 38px;
     font-size:20px;
-
     line-height:1.8;
-
     opacity:.95;
-
-    margin-bottom:40px;
-
-    max-width:620px;
-
 }
 
 /*=========================================================
@@ -119,105 +93,38 @@ html{
 =========================================================*/
 
 .hero-buttons{
-
     display:flex;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
+    justify-content:center;
 }
 
 .btn-primary{
-
-    background:white;
-
+    display:inline-block;
+    background:#FFFFFF;
     color:#2563EB;
-
-    padding:17px 35px;
-
-    border-radius:12px;
-
+    padding:16px 36px;
+    border-radius:14px;
     text-decoration:none;
-
     font-weight:600;
-
-    transition:.3s;
-
+    border:2px solid white;
+    transition:all .3s ease;
 }
 
 .btn-primary:hover{
-
-    transform:translateY(-4px);
-
+    background:#EFF6FF;
+    color:#1D4ED8;
+    transform:translateY(-3px);
     box-shadow:0 15px 30px rgba(0,0,0,.20);
-
 }
 
-.btn-secondary{
-
-    color:white;
-
-    border:2px solid white;
-
-    padding:17px 35px;
-
-    border-radius:12px;
-
-    text-decoration:none;
-
-    transition:.3s;
-
+.btn-primary:hover{
+    background:#EFF6FF;
+    color:#1D4ED8;
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(0,0,0,.20);
 }
-
-.btn-secondary:hover{
-
-    background:white;
-
-    color:#2563EB;
-
-}
-
-/*=========================================================
-                    IMAGEN HERO
-=========================================================*/
-
-.hero-image{
-
-    flex:1.2;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-.hero-image img{
-
-    width:100%;
-
-    max-width:720px;
-
-    height:auto;
-
-    object-fit:contain;
-
-    border-radius:24px;
-
-    box-shadow:0 30px 60px rgba(0,0,0,.30);
-
-    display:block;
-
-    transition:.4s;
-
-}
-
-.hero-image img:hover{
-
-    transform:scale(1.02);
-
+.btn-primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 30px rgba(0,0,0,.20);
 }
 
 /*=========================================================
@@ -225,146 +132,90 @@ html{
 =========================================================*/
 
 .section-title{
-
     font-size:42px;
-
     color:#1E3A8A;
-
     margin-bottom:20px;
-
     text-align:center;
-
 }
 
 .section-subtitle{
-
     font-size:18px;
-
     color:#64748B;
-
     text-align:center;
-
     max-width:760px;
-
     margin:auto;
-
     line-height:1.8;
-
 }
 
 /*=========================================================
-                    FEATURES
+                    CARACTERÍSTICAS
 =========================================================*/
 
 .features{
-
     padding:100px 8%;
-
     background:white;
-
 }
 
 .features-grid{
-
     display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-
-    gap:35px;
-
-    margin-top:70px;
-
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+    margin-top:60px;
 }
+
 /*=========================================================
-                    BENEFICIOS
+                    NOSOTROS
 =========================================================*/
 
 .benefits{
-
     padding:100px 8%;
-
     background:#F8FAFC;
-
 }
 
 .benefits-grid{
-
     max-width:1300px;
-
     margin:70px auto 0;
-
     display:grid;
-
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-
     gap:35px;
-
 }
 
 .benefit-card{
-
     background:white;
-
     border-radius:20px;
-
     padding:40px 30px;
-
     text-align:center;
-
     box-shadow:0 15px 35px rgba(0,0,0,.08);
-
     transition:.35s;
-
 }
 
 .benefit-card:hover{
-
     transform:translateY(-10px);
-
 }
 
 .benefit-icon{
-
     width:80px;
-
     height:80px;
-
     margin:auto;
-
     background:#2563EB;
-
     color:white;
-
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-size:34px;
-
     margin-bottom:25px;
-
 }
 
 .benefit-card h3{
-
     color:#1E3A8A;
-
     margin-bottom:18px;
-
     font-size:24px;
-
 }
 
 .benefit-card p{
-
     color:#555;
-
     line-height:1.7;
-
 }
 
 /*=========================================================
@@ -372,71 +223,44 @@ html{
 =========================================================*/
 
 .stats{
-
     padding:100px 8%;
-
     background:#2563EB;
-
     color:white;
-
 }
 
 .stats .section-title{
-
     color:white;
-
 }
 
 .stats-grid{
-
     max-width:1200px;
-
     margin:70px auto 0;
-
     display:grid;
-
     grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
     gap:30px;
-
 }
 
 .stat-item{
-
     text-align:center;
-
     padding:35px;
-
     border-radius:20px;
-
     background:rgba(255,255,255,.10);
-
     backdrop-filter:blur(10px);
-
     transition:.3s;
-
 }
 
 .stat-item:hover{
-
     transform:translateY(-8px);
-
     background:rgba(255,255,255,.18);
-
 }
 
 .stat-item h3{
-
     font-size:52px;
-
     margin-bottom:15px;
-
 }
 
 .stat-item p{
-
     font-size:18px;
-
 }
 
 /*=========================================================
@@ -444,99 +268,84 @@ html{
 =========================================================*/
 
 .how-it-works{
-
     padding:100px 8%;
-
     background:white;
-
     text-align:center;
-
 }
 
 .how-it-works h2{
-
     color:#1E3A8A;
-
     font-size:42px;
-
 }
 
 .steps{
-
     max-width:1300px;
-
     margin:70px auto 0;
-
     display:grid;
-
     grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-
     gap:35px;
-
 }
 
 .step{
-
     background:#F8FAFC;
-
     border-radius:20px;
-
     padding:40px 30px;
-
     box-shadow:0 15px 35px rgba(0,0,0,.08);
-
     transition:.3s;
-
 }
 
 .step:hover{
-
     transform:translateY(-10px);
-
 }
 
 .step-icon{
-
     width:85px;
-
     height:85px;
-
     background:#2563EB;
-
     color:white;
-
     margin:auto;
-
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-size:38px;
-
     margin-bottom:25px;
-
 }
 
 .step h3{
-
     color:#1E3A8A;
-
     margin-bottom:15px;
-
     font-size:24px;
-
 }
 
 .step p{
-
     color:#555;
-
     line-height:1.8;
+}
 
+/*=========================================================
+                    CONTACTO
+=========================================================*/
+
+.contacto{
+    padding:100px 8%;
+    background:white;
+}
+
+.contact-card{
+    max-width:700px;
+    margin:40px auto 0;
+    background:#F8FAFC;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.contact-card p{
+    margin:12px 0;
+    color:#475569;
+    font-size:18px;
 }
 
 /*=========================================================
@@ -544,61 +353,37 @@ html{
 =========================================================*/
 
 footer{
-
     background:#0F172A;
-
     color:white;
-
     text-align:center;
-
     padding:35px;
-
     font-size:16px;
-
 }
 
 /*=========================================================
-                RESPONSIVE
+                    RESPONSIVE
 =========================================================*/
 
 @media(max-width:992px){
 
-.hero-content{
-
-    flex-direction:column;
-
-    text-align:center;
-
-}
-
-.hero p{
-
-    margin:auto auto 35px;
-
-}
-
-.hero-buttons{
-
-    justify-content:center;
-
+.hero{
+    padding:110px 30px 70px;
 }
 
 .hero h1{
-
-    font-size:48px;
-
+    font-size:52px;
 }
 
 .hero h2{
-
-    font-size:28px;
-
+    font-size:26px;
 }
 
-.hero-image{
+.hero p{
+    font-size:18px;
+}
 
-    margin-top:40px;
-
+.features-grid{
+    grid-template-columns:1fr;
 }
 
 }
@@ -606,39 +391,23 @@ footer{
 @media(max-width:768px){
 
 .hero{
-
-    padding:120px 25px 80px;
-
+    padding:100px 25px 60px;
 }
 
 .hero h1{
-
-    font-size:38px;
-
+    font-size:40px;
 }
 
 .hero h2{
-
-    font-size:24px;
-
+    font-size:22px;
 }
 
 .hero p{
-
-    font-size:17px;
-
+    font-size:16px;
 }
 
 .section-title{
-
     font-size:34px;
-
-}
-
-.hero-image img{
-
-    max-width:100%;
-
 }
 
 }

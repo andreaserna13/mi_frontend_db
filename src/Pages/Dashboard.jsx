@@ -1,636 +1,401 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { obtenerReservas } from "../services/reservaService";
-
+import Sidebar from "../Components/Sidebar";
 import "./Dashboard.css";
 
-
 function Dashboard() {
+  const navigate = useNavigate();
 
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-    const navigate = useNavigate();
-
-
-    const usuario = JSON.parse(
-        localStorage.getItem("usuario")
-    );
-
-
-
-    const [reservas, setReservas] = useState([]);
-
+  const [reservas, setReservas] = useState([]);
   const [notificacionesVistas, setNotificacionesVistas] = useState(
     JSON.parse(localStorage.getItem("notificacionesVistas")) || []
+  );
+  const [horaActual, setHoraActual] = useState(new Date());
+
+  useEffect(() => {
+    cargarReservas();
+  }, []);
+
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      setHoraActual(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, []);
+
+  const cargarReservas = async () => {
+    try {
+      const data = await obtenerReservas();
+
+    const misReservas = data.filter(
+  (reserva) =>
+    reserva.usuario === usuario?.nombre &&
+    reserva.estado !== "Cancelada"
+    );
+
+setReservas(misReservas);
+
+      localStorage.setItem(
+        "reservasSmartReserve",
+        JSON.stringify(misReservas)
+      );
+    } catch (error) {
+      console.log("Error cargando reservas:", error);
+    }
+  };
+
+  const ahora = new Date();
+
+const reservasFuturas = reservas
+  .filter((reserva) => {
+    const fechaHoraReserva = new Date(
+      `${reserva.fecha}T${reserva.horaInicio}`
+    );
+
+    return fechaHoraReserva >= ahora;
+  })
+  .sort((a, b) => {
+    const fechaA = new Date(
+      `${a.fecha}T${a.horaInicio}`
+    );
+
+    const fechaB = new Date(
+      `${b.fecha}T${b.horaInicio}`
+    );
+
+    return fechaA - fechaB;
+  });
+
+const proximaReserva = reservasFuturas[0] || null;
+
+const salasDisponibles = 3;
+
+const fechaHoy = horaActual.toISOString().split("T")[0];
+
+const salasOcupadasHoy = new Set(
+  reservas
+    .filter(
+      (reserva) =>
+        reserva.fecha === fechaHoy &&
+        reserva.estado !== "Cancelada"
+    )
+    .map((reserva) => reserva.sala)
 );
-    const [horaActual, setHoraActual] = useState(
-        new Date()
+
+const cantidadSalasDisponibles =
+  Math.max(
+    0,
+    salasDisponibles - salasOcupadasHoy.size
+  );
+
+  const fechaActual = horaActual.toLocaleDateString("es-CO", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+  const notificacionesPendientes = reservas.filter(
+    (reserva) => !notificacionesVistas.includes(reserva.id)
+  ).length;
+
+  const abrirNotificaciones = () => {
+    const ids = reservas.map((reserva) => reserva.id);
+
+    localStorage.setItem(
+      "notificacionesVistas",
+      JSON.stringify(ids)
     );
 
+    setNotificacionesVistas(ids);
 
+    navigate("/notificaciones");
+  };
 
-    const cargarReservas = async () => {
+  return (
+    <div className="dashboard-layout">
 
+      <Sidebar />
 
-        try {
+      <main className="dashboard-main">
 
+        {/* ENCABEZADO */}
 
-            const data = await obtenerReservas();
+        <header className="dashboard-topbar">
 
+          <div className="dashboard-heading">
 
+            <span className="dashboard-date">
+              {fechaActual}
+            </span>
 
-            const misReservas = data.filter(
+            <h1>
+              Bienvenido, {usuario?.nombre || "Usuario"} 👋
+            </h1>
 
-                (reserva) =>
+            <p>
+              Aquí tienes un resumen de tu actividad en SmartReserve.
+            </p>
 
-                    reserva.usuario === usuario?.nombre
+          </div>
 
-            );
+          <div className="dashboard-tools">
 
+            <button
+              className="notification-button"
+              onClick={abrirNotificaciones}
+              title="Notificaciones"
+            >
+              🔔
 
+              {notificacionesPendientes > 0 && (
+                <span className="notification-badge">
+                  {notificacionesPendientes}
+                </span>
+              )}
+            </button>
 
-            setReservas(misReservas);
+            <div className="clock-box">
 
-             localStorage.setItem(
-             "reservasSmartReserve",
-            JSON.stringify(misReservas)
-           );
+              <span>Hora actual</span>
 
+              <strong>
+                {horaActual.toLocaleTimeString("es-CO")}
+              </strong>
 
-        } catch(error) {
+            </div>
 
+          </div>
 
-            console.log(error);
+        </header>
 
+        {/* PRÓXIMA RESERVA */}
 
-        }
+        <section className="main-reservation">
 
+          <div className="reservation-header">
 
-    };
+            <div>
+              <span className="section-label">
+                AGENDA
+              </span>
 
+              <h2>
+                Próxima reserva
+              </h2>
+            </div>
 
+            <div className="reservation-icon">
+              📅
+            </div>
 
+          </div>
 
-    useEffect(() => {
+          {proximaReserva ? (
 
+            <div className="reservation-body">
 
-        cargarReservas();
+              <div className="reservation-main">
 
+                <span className="reservation-label">
+                  SALA
+                </span>
 
-    }, []);
+                <h3>
+                  {proximaReserva.sala}
+                </h3>
 
+              </div>
 
-
-
-    useEffect(() => {
-
-
-        const intervalo = setInterval(() => {
-
-
-            setHoraActual(
-                new Date()
-            );
-
-
-        },1000);
-
-
-
-        return () => clearInterval(intervalo);
-
-
-
-    }, []);
-
-
-
-
-    const proximaReserva = reservas[0];
-
-
-
-
-    const fechaActual = horaActual.toLocaleDateString(
-
-        "es-CO",
-
-        {
-
-            weekday:"long",
-
-            year:"numeric",
-
-            month:"long",
-
-            day:"numeric"
-
-        }
-
-    );
-
-
-
-
-    const cerrarSesion = () => {
-
-
-        localStorage.clear();
-
-
-        navigate("/login");
-
-
-    };
-        return (
-
-        <div className="dashboard-page">
-
-
-            <header className="dashboard-header">
-
-
-                <div className="logo-area">
-
-
-                    <div className="logo-circle">
-
-                        SR
-
-                    </div>
-
-
-                    <h2>
-
-                        SmartReserve
-
-                    </h2>
-
-
+              <div className="reservation-details">
+
+                <div>
+                  <span>📅</span>
+
+                  <div>
+                    <small>Fecha</small>
+                    <strong>
+                      {proximaReserva.fecha}
+                    </strong>
+                  </div>
                 </div>
 
+                <div>
+                  <span>🕐</span>
 
-
-
-               <div className="user-area">
-
-
-    <div className="notificacion-icon">
-
-
-        <button
-            className="btn-notificacion"
-
-            onClick={() => {
-
-
-                const idsReservas = reservas.map(
-
-                    reserva => reserva.id
-
-                );
-
-
-                localStorage.setItem(
-
-                    "notificacionesVistas",
-
-                    JSON.stringify(idsReservas)
-
-                );
-
-
-                setNotificacionesVistas(idsReservas);
-
-
-                navigate("/notificaciones");
-
-
-            }}
-        >
-
-            🔔
-
-
-            {
-
-                reservas.filter(
-
-                    reserva => !notificacionesVistas.includes(reserva.id)
-
-                ).length > 0 && (
-
-
-                    <span className="contador-notificacion">
-
-
-                        {
-
-                            reservas.filter(
-
-                                reserva => !notificacionesVistas.includes(reserva.id)
-
-                            ).length
-
-
-                        }
-
-
-                    </span>
-
-
-                )
-
-            }
-
-
-        </button>
-
-
-    </div>
-                    <span>
-
-                        👤 {usuario?.nombre || "Usuario"}
-
-                    </span>
-
-                    <button
-
-                        onClick={cerrarSesion}
-
-                    >
-                        Cerrar sesión
-
-                    </button>
-
+                  <div>
+                    <small>Horario</small>
+                    <strong>
+                      {proximaReserva.horaInicio} -{" "}
+                      {proximaReserva.horaFin}
+                    </strong>
+                  </div>
                 </div>
 
-            </header>
+                <span className="active-status">
+                  {proximaReserva.estado || "Activa"}
+                </span>
 
-            <main className="dashboard-content">
+              </div>
 
-                <h1>
+            </div>
 
-                    Bienvenido a SmartReserve
+          ) : (
 
-                </h1>
+            <div className="empty-reservation">
 
-                <p className="subtitle">
+              <div className="empty-reservation-icon">
+                📭
+              </div>
 
-                    Gestiona tus espacios de reuniones de forma rápida y organizada.
+              <div>
 
-                </p>
-
-                <div className="welcome-info">
-
-                    <div>
-
-                        <h3>
-
-                            👋 Hola, {usuario?.nombre}
-
-                        </h3>
-
-
-                        <p>
-
-                            Nos alegra verte nuevamente.
-
-                        </p>
-
-                    </div>
-
-                    <div className="fecha-box">
-
-                        <p>
-
-                            📅 {fechaActual}
-
-                        </p>
-
-                        <p>
-
-                            🕒 {horaActual.toLocaleTimeString("es-CO")}
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <section className="cards-container">
-
-                    <div className="dashboard-card">
-
-
-                        <div className="card-icon">
-
-                            📅
-
-                        </div>
-
-                        <h3>
-
-                            Reservar sala
-
-                        </h3>
-
-                        <p>
-
-                            Encuentra espacios disponibles para tus reuniones.
-
-                        </p>
-
-                        <button
-
-                            onClick={() => navigate("/reservar")}
-
-                        >
-                            Buscar salas
-
-                        </button>
-
-                    </div>
-
-                    <div className="dashboard-card">
-
-
-                        <div className="card-icon">
-
-                            🏢
-
-                        </div>
-
-                        <h3>
-
-                            Mis reservas
-
-                        </h3>
-
-                        <p>
-
-                            Consulta y administra tus próximas reuniones.
-
-                        </p>
-
-                        <button
-
-                            onClick={() => navigate("/misreservas")}
-
-                        >
-                            Ver reservas
-
-                        </button>
-
-                    </div>
-
-                    <div className="dashboard-card">
-
-
-                        <div className="card-icon">
-
-                            ⚙️
-
-                        </div>
-
-
-                        <h3>
-
-                            Configuración
-
-                        </h3>
-
-                        <p>
-
-                            Gestiona tu información personal.
-
-                        </p>
-
-
-                        <button
-
-                            onClick={() => navigate("/configuracion")}
-
-                        >
-                            Configurar
-
-                        </button>
-
-
-                    </div>
-
-
-                    <div className="dashboard-card">
-
-
-                        <div className="card-icon">
-
-                            🗓️
-
-                        </div>
-
-
-
-                        <h3>
-
-                            Calendario
-
-                        </h3>
-
-
-                        <p>
-
-                            Consulta las reservas organizadas por fecha.
-
-                        </p>
-
-
-                        <button
-
-                            onClick={() => navigate("/calendario")}
-
-                        >
-
-                            Abrir calendario
-
-                        </button>
-
-
-
-                    </div>
-
-
-                </section>
-
-
-                <section className="summary-container">
-
-
-    <div className="summary-card principal">
-
-
-        <div className="summary-header">
-
-            <h2>
-                📌 Próxima reserva
-            </h2>
-
-        </div>
-
-
-
-        {
-            proximaReserva ? (
-
-
-                <div className="reserva-info">
-
-
-                    <h3>
-                        🏢 {proximaReserva.sala}
-                    </h3>
-
-
-                    <p>
-
-                        📅 Fecha:
-
-                        <strong>
-                            {" "}{proximaReserva.fecha}
-                        </strong>
-
-                    </p>
-
-
-                    <p>
-
-                        🕒 Horario:
-
-                        <strong>
-                            {" "}{proximaReserva.horaInicio} - {proximaReserva.horaFin}
-                        </strong>
-
-                    </p>
-
-
-                    <span className="estado-activa">
-
-                        {proximaReserva.estado}
-
-                    </span>
-
-
-                </div>
-
-
-            ) : (
-
+                <h3>
+                  No tienes reservas próximas
+                </h3>
 
                 <p>
-                    No tienes reservas próximas.
+                  Cuando realices una reserva aparecerá aquí.
                 </p>
 
+              </div>
 
-            )
+              <button
+                onClick={() => navigate("/reservar")}
+              >
+                + Crear una reserva
+              </button>
 
-        }
-        
-             
+            </div>
 
+          )}
 
-                       </div>
+        </section>
 
+        {/* ESTADÍSTICAS */}
 
+        <section className="dashboard-stats">
 
-    <div className="summary-card estadisticas">
+          <div className="stat-card">
 
+            <div className="stat-card-icon blue">
+              📅
+            </div>
 
-        <div className="summary-header">
+            <div>
+              <span>Reservas activas</span>
+              <strong>{reservas.length}</strong>
+            </div>
 
-            <h2>
-                📊 Resumen
-            </h2>
+          </div>
 
-        </div>
+          <div className="stat-card">
 
+            <div className="stat-card-icon green">
+              🏢
+            </div>
 
+            <div>
+              <span>Salas disponibles</span>
+              <strong>{cantidadSalasDisponibles}</strong>
+            </div>
 
-        <div className="estadistica-item">
+          </div>
 
+          <div className="stat-card">
 
-            <span>
-                ✔ Reservas activas
-            </span>
+            <div className="stat-card-icon orange">
+              🔔
+            </div>
 
+            <div>
+              <span>Notificaciones</span>
+              <strong>{notificacionesPendientes}</strong>
+            </div>
 
-            <strong>
-                {reservas.length}
-            </strong>
+          </div>
 
+        </section>
 
-        </div>
+        {/* ACTIVIDAD */}
 
+        <section className="activity-section">
 
+          <div className="activity-heading">
 
-        <div className="estadistica-item">
+            <div>
+              <span className="section-label">
+                ACTIVIDAD
+              </span>
 
+              <h2>
+                Actividad reciente
+              </h2>
+            </div>
 
-            <span>
-                🏢 Salas disponibles
-            </span>
+          </div>
 
+          {reservas.length > 0 ? (
 
-            <strong>
-                5
-            </strong>
+            <div className="activity-list">
 
+              {reservas.slice(0, 4).map((reserva) => (
 
-        </div>
+                <div
+                  className="activity-item"
+                  key={reserva.id}
+                >
 
+                  <div className="activity-icon">
+                    ✓
+                  </div>
 
+                  <div className="activity-info">
 
-        <div className="estadistica-item">
+                    <strong>
+                      Reserva realizada
+                    </strong>
 
+                    <span>
+                      {reserva.sala} · {reserva.fecha}
+                    </span>
 
-            <span>
-                🔔 Notificaciones
-            </span>
+                  </div>
 
+                  <span className="activity-status">
+                    {reserva.estado || "Activa"}
+                  </span>
 
-            <strong>
-                {
-                    reservas.filter(
+                </div>
 
-                        reserva => 
-                        !notificacionesVistas.includes(reserva.id)
+              ))}
 
-                    ).length
-                }
-            </strong>
+            </div>
 
+          ) : (
 
-        </div>
+            <div className="no-activity">
 
+              <span>📋</span>
+
+              <p>
+                Todavía no tienes actividad reciente.
+              </p>
+
+            </div>
+
+          )}
+
+        </section>
+
+      </main>
 
     </div>
-
-
-</section>
-
-
-            </main>
-
-
-
-
-        </div>
-
-
-    );
-
-
+  );
 }
-
-
 
 export default Dashboard;

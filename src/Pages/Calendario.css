@@ -1,0 +1,185 @@
+/* =====================================================
+   SMARTRESERVE - CALENDARIO
+===================================================== */
+
+.page-container{
+    min-height:100vh;
+    padding:45px;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(51,78,104,.06), transparent 35%),
+      radial-gradient(circle at 85% 80%, rgba(100,116,139,.05), transparent 30%),
+      linear-gradient(135deg,#EEF3F7,#F8FAFC);
+}
+
+/* CABECERA */
+
+.page-header{
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:28px;
+    box-shadow:0 14px 35px rgba(30,41,59,.06);
+}
+
+.page-header h1{
+    margin:18px 0 10px;
+    color:#1E293B;
+    font-size:34px;
+}
+
+.page-header p{
+    margin:0;
+    color:#64748B;
+}
+
+/* BOTÓN VOLVER */
+
+.btn-volver{
+    border:1px solid #D6DEE5;
+    background:white;
+    color:#526476;
+    padding:11px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-volver:hover{
+    background:#F7F9FB;
+    color:#334E68;
+}
+
+/* TARJETA */
+
+.page-card{
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 12px 28px rgba(30,41,59,.05);
+}
+
+/* CALENDARIO */
+
+.react-calendar{
+    width:100%;
+    max-width:520px;
+
+    border:none !important;
+    border-radius:18px;
+    padding:20px;
+    background:#F8FAFC;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.05);
+}
+
+.react-calendar__navigation button{
+    color:#334E68;
+    font-size:18px;
+    font-weight:600;
+    border-radius:10px;
+}
+
+.react-calendar__navigation button:hover{
+    background:#E8EEF4 !important;
+}
+
+.react-calendar__tile{
+    border-radius:10px;
+    transition:.2s;
+}
+
+.react-calendar__tile:hover{
+    background:#E8EEF4 !important;
+}
+
+.react-calendar__tile--active{
+    background:#334E68 !important;
+    color:white !important;
+}
+
+.dia-con-reserva{
+    background:#DBEAFE !important;
+    color:#1D4ED8 !important;
+    font-weight:bold;
+}
+
+/* FECHA */
+
+.fecha-info{
+    margin-top:30px;
+    background:#F8FAFC;
+    border:1px solid #E5E7EB;
+    border-radius:16px;
+    padding:20px;
+    text-align:center;
+}
+
+.fecha-info h2{
+    margin:0 0 8px;
+    color:#334E68;
+}
+
+.fecha-info p{
+    margin:0;
+    font-size:18px;
+    color:#475569;
+}
+
+/* RESERVAS */
+
+.reservas-calendario{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:20px;
+}
+
+.dashboard-card{
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 10px 24px rgba(30,41,59,.05);
+    transition:.25s;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 16px 30px rgba(30,41,59,.08);
+}
+
+.dashboard-card h3{
+    color:#334E68;
+    margin-bottom:12px;
+}
+
+.dashboard-card p{
+    color:#475569;
+    margin:8px 0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .page-container{
+        padding:25px 18px;
+    }
+
+    .page-header{
+        padding:24px;
+    }
+
+    .page-header h1{
+        font-size:28px;
+    }
+
+    .page-card{
+        padding:22px;
+    }
+}

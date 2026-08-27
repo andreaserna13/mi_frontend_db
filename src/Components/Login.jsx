@@ -1,72 +1,79 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';  // <-- Solo agregué Link aquí
-import { iniciarSesion } from '../service/useService';
-import './LoginAdmin.css';
 
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
-  const [nombre, setNombre] = useState('');
-  const [clave, setClave] = useState('');
-  const [tipoUsuarioState, setTipoUsuarioState] = useState('');
-  const [error, setError] = useState('');
-  const [mostrarClave, setMostrarClave] = useState(false);
-  const [cargando, setCargando] = useState(false);
-
+function Login() {
   const navigate = useNavigate();
+
+  const [tipoUsuario, setTipoUsuario] = useState("usuario");
+  const [nombre, setNombre] = useState("");
+  const [clave, setClave] = useState("");
+  const [mostrarClave, setMostrarClave] = useState(false);
+  const [error, setError] = useState("");
+
+  const URL_BACKEND = import.meta.env.VITE_API_BASE_URL;
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
 
-    if (!nombre || !clave || !tipoUsuarioState) {
-      setError('Por favor completa todos los campos');
-      return;
-    }
-
-    setCargando(true);
     try {
-      const resultado = await iniciarSesion(nombre, clave, tipoUsuarioState);
+      const respuesta = await fetch(
+        `${URL_BACKEND}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            nombre,
+            clave,
+            tipoUsuario
+          })
+        }
+      );
 
-      if (resultado.exito) {
-        if (resultado.token) localStorage.setItem('token', resultado.token);
-        setLogueado(true);
-        setTipoUsuario(resultado.usuario.tipoUsuario);
-        setError('');
-        // Navegación inmediata después de login exitoso
-        if (resultado.usuario.tipoUsuario === 'admin') {
-          navigate('/admin');
+      const data = await respuesta.json();
+
+      if (respuesta.ok) {
+        localStorage.setItem(
+          "usuario",
+          JSON.stringify(data.usuario)
+        );
+
+        if (data.usuario.tipoUsuario === "admin") {
+          navigate("/admin");
         } else {
-          navigate('/reservas');
+          navigate("/dashboard");
         }
       } else {
-        setError(resultado.mensaje || 'Credenciales incorrectas');
+        setError(
+          data.mensaje || "Credenciales incorrectas"
+        );
       }
-    } catch {
-      setError('Error al iniciar sesión. Inténtalo de nuevo.');
-    } finally {
-      setCargando(false);
+    } catch (error) {
+      console.error(error);
+      setError("No hay conexión con el servidor");
     }
   };
 
-  useEffect(() => {
-    if (logueado) {
-      if (tipoUsuario === 'admin') {
-        navigate('/admin');
-      } else {
-        navigate('/reservas');
-      }
-    }
-  }, [logueado, tipoUsuario, navigate]);
-
   return (
-    <div className="login-container">
+    <div className="login-page">
       <div className="login-box">
+
+        <h1>SmartReserve</h1>
+
         <h2>Iniciar sesión</h2>
-        <form onSubmit={handleLogin}>
-          <div className="input-group">
-            <label htmlFor="username">Nombre de usuario</label>
+
+        <form
+          className="login-form"
+          onSubmit={handleLogin}
+        >
+
+          <div className="login-field">
             <input
-              id="username"
               type="text"
               placeholder="Nombre de usuario"
               value={nombre}
@@ -75,83 +82,87 @@ const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
             />
           </div>
 
-          <div className="input-group">
-            <label htmlFor="password">Contraseña</label>
-            <div className="password-container">
-              <input
-                id="password"
-                type={mostrarClave ? 'text' : 'password'}
-                placeholder="Contraseña"
-                value={clave}
-                onChange={(e) => setClave(e.target.value)}
-                required
-              />
-              <span
-                className="toggle-password"
-                onClick={() => setMostrarClave(!mostrarClave)}
-                title={mostrarClave ? 'Ocultar contraseña' : 'Mostrar contraseña'}
-                role="button"
-                tabIndex={0}
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') setMostrarClave(!mostrarClave);
-                }}
-              >
-                {mostrarClave ? <FaEye /> : <FaEyeSlash />}
-              </span>
-            </div>
+          <div className="password-container">
+            <input
+              type={mostrarClave ? "text" : "password"}
+              placeholder="Contraseña"
+              value={clave}
+              onChange={(e) => setClave(e.target.value)}
+              required
+            />
+
+            <span
+              className="toggle-password"
+              onClick={() =>
+                setMostrarClave(!mostrarClave)
+              }
+              title={
+                mostrarClave
+                  ? "Ocultar contraseña"
+                  : "Mostrar contraseña"
+              }
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setMostrarClave(!mostrarClave);
+                }
+              }}
+            >
+              {mostrarClave ? <FaEye /> : <FaEyeSlash />}
+            </span>
           </div>
 
-          <div className="input-group">
-            <label htmlFor="userType">Tipo de Usuario</label>
+          <div className="login-field">
             <select
-              id="userType"
-              value={tipoUsuarioState}
-              onChange={(e) => setTipoUsuarioState(e.target.value)}
-              required
+              className="login-select"
+              value={tipoUsuario}
+              onChange={(e) =>
+                setTipoUsuario(e.target.value)
+              }
             >
-              <option value="" disabled>Tipo de Usuario</option>
-              <option value="admin">Administrador</option>
-              <option value="usuario">Usuario</option>
+              <option value="usuario">
+                Usuario
+              </option>
+
+              <option value="admin">
+                Administrador
+              </option>
             </select>
           </div>
 
-          {error && <p className="error-message">{error}</p>}
+          {error && (
+            <p className="error-message">
+              {error}
+            </p>
+          )}
 
-          <button type="submit" disabled={cargando}>
-            {cargando ? 'Cargando...' : 'Entrar'}
+          <button
+            className="login-button"
+            type="submit"
+          >
+            Ingresar
           </button>
+
         </form>
 
-        <div className="links">
-          <Link to="/recuperar-contraseña">¿Olvidaste tu contraseña?</Link>
-          <Link to="/registro">¿No tienes cuenta? Regístrate</Link>
-          <Link to="/permisos">Formulario de permisos</Link>
-        </div>
+        <p className="forgot-password">
+          <Link to="/recuperar-password">
+            ¿Olvidaste tu contraseña?
+          </Link>
+        </p>
+
+        <p className="register-text">
+          ¿No tienes cuenta?{" "}
+          <Link to="/registro">
+            Registrarse
+          </Link>
+        </p>
+
       </div>
     </div>
   );
-};
+}
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

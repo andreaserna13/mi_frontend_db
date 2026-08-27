@@ -1,690 +1,597 @@
-.dashboard-page {
+/* =========================================
+   SMARTRESERVE - DASHBOARD
+========================================= */
 
-    min-height: 100vh;
-    background: #f4f7fb;
-    font-family: Arial, sans-serif;
-
+.dashboard-layout {
+  min-height: 100vh;
+  background: #f4f7fa;
 }
 
+/* =========================================
+   CONTENIDO PRINCIPAL
+========================================= */
 
-
-/* ==========================
-   BARRA SUPERIOR
-========================== */
-
-
-.dashboard-header {
-
-    height: 80px;
-    background: white;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 0 50px;
-
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-
-    position: sticky;
-    top: 0;
-    z-index: 10;
-
+.dashboard-main {
+  margin-left: 270px;
+  min-height: 100vh;
+  padding: 34px 42px;
+  color: #172b3a;
 }
 
+/* =========================================
+   ENCABEZADO
+========================================= */
 
-
-.logo-area {
-
-    display: flex;
-    align-items: center;
-    gap: 15px;
-
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
 }
 
-
-
-.logo-area h2 {
-
-    color: #1e3c72;
-    font-size: 24px;
-    margin: 0;
-
+.dashboard-heading {
+  max-width: 700px;
 }
 
-
-
-.logo-circle {
-
-    width: 50px;
-    height: 50px;
-
-    border-radius: 50%;
-
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #1e3c72
-    );
-
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-weight:bold;
-    font-size:18px;
-
-    box-shadow:0 5px 15px rgba(30,60,114,0.3);
-
+.dashboard-date {
+  display: block;
+  color: #7890a3;
+  font-size: 13px;
+  text-transform: capitalize;
+  margin-bottom: 8px;
 }
 
-
-
-
-
-/* Usuario */
-
-
-.user-area {
-
-    display:flex;
-    align-items:center;
-    gap:25px;
-
+.dashboard-heading h1 {
+  margin: 0;
+  font-size: 31px;
+  font-weight: 700;
+  color: #17324d;
 }
 
-
-
-.user-area span {
-
-    font-weight:600;
-    color:#333;
-
+.dashboard-heading p {
+  margin: 8px 0 0;
+  color: #718497;
+  font-size: 15px;
 }
 
-
-
-.user-area button {
-
-
-    background:#1e3c72;
-
-    color:white;
-
-    border:none;
-
-    padding:12px 22px;
-
-    border-radius:10px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+.dashboard-tools {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
+/* =========================================
+   NOTIFICACIONES
+========================================= */
 
+.notification-button {
+  position: relative;
 
-.user-area button:hover {
+  width: 46px;
+  height: 46px;
 
-    background:#2563eb;
+  border: 1px solid #e0e7ed;
+  border-radius: 12px;
 
-    transform:translateY(-2px);
+  background: white;
 
+  cursor: pointer;
+
+  font-size: 19px;
+
+  box-shadow: 0 4px 14px rgba(30, 55, 75, .06);
 }
 
-
-
-
-
-/* ==========================
-   CONTENIDO
-========================== */
-
-
-.dashboard-content {
-
-    padding:45px 60px;
-
+.notification-button:hover {
+  background: #f7fafc;
 }
 
+.notification-badge {
+  position: absolute;
 
+  top: -5px;
+  right: -5px;
 
-.dashboard-content h1 {
+  min-width: 19px;
+  height: 19px;
 
-    color:#1e3c72;
+  padding: 0 5px;
 
-    font-size:35px;
+  border-radius: 50px;
 
-    margin-bottom:10px;
+  background: #e05252;
+  color: white;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 10px;
+  font-weight: 700;
 }
 
+/* =========================================
+   RELOJ
+========================================= */
 
+.clock-box {
+  min-width: 135px;
 
-.subtitle {
+  padding: 9px 14px;
 
-    color:#666;
+  border-radius: 12px;
 
-    font-size:17px;
+  background: white;
+  border: 1px solid #e0e7ed;
 
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 4px 14px rgba(30, 55, 75, .06);
 }
 
-
-
-
-
-/* ==========================
-   TARJETAS PRINCIPALES
-========================== */
-
-
-.cards-container {
-
-
-    margin-top:40px;
-
-
-    display:grid;
-
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-
-
-    gap:30px;
-
-
+.clock-box span {
+  font-size: 10px;
+  color: #8295a5;
+  margin-bottom: 2px;
 }
 
-
-
-
-
-.dashboard-card {
-
-
-    background:white;
-
-
-    padding:35px 25px;
-
-
-    border-radius:20px;
-
-
-    text-align:center;
-
-
-    box-shadow:
-    0 10px 30px rgba(0,0,0,0.08);
-
-
-    transition:.3s;
-
-
+.clock-box strong {
+  color: #24425c;
+  font-size: 15px;
 }
 
+/* =========================================
+   TARJETA PRINCIPAL
+========================================= */
 
+.main-reservation {
+  background: white;
 
+  border: 1px solid #e4eaf0;
+  border-radius: 20px;
 
+  padding: 28px 30px;
 
-.dashboard-card:hover {
+  box-shadow: 0 8px 25px rgba(30, 55, 75, .05);
 
-
-    transform:translateY(-8px);
-
-
-    box-shadow:
-    0 15px 35px rgba(0,0,0,0.15);
-
-
+  margin-bottom: 22px;
 }
 
+.reservation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  padding-bottom: 20px;
 
-
-.card-icon {
-
-
-    font-size:50px;
-
-
-    margin-bottom:15px;
-
-
+  border-bottom: 1px solid #edf1f4;
 }
 
+.section-label {
+  display: block;
 
+  font-size: 10px;
+  font-weight: 700;
 
+  letter-spacing: 1.5px;
 
+  color: #7890a3;
 
-.dashboard-card h3 {
-
-
-    color:#1e3c72;
-
-
-    font-size:22px;
-
-
+  margin-bottom: 5px;
 }
 
+.reservation-header h2,
+.activity-heading h2 {
+  margin: 0;
 
-
-
-
-.dashboard-card p {
-
-
-    color:#666;
-
-
-    min-height:45px;
-
-
+  font-size: 21px;
+  color: #1c374e;
 }
 
+.reservation-icon {
+  width: 46px;
+  height: 46px;
 
+  border-radius: 12px;
 
+  background: #eef5fa;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.dashboard-card button {
-
-
-    margin-top:20px;
-
-
-    width:100%;
-
-
-    padding:13px;
-
-
-    background:#1e3c72;
-
-
-    color:white;
-
-
-    border:none;
-
-
-    border-radius:12px;
-
-
-    cursor:pointer;
-
-
-    font-size:15px;
-
-
-    transition:.3s;
-
-
+  font-size: 21px;
 }
 
+/* =========================================
+   RESERVA
+========================================= */
 
+.reservation-body {
+  padding-top: 24px;
 
-
-.dashboard-card button:hover {
-
-
-    background:#2563eb;
-
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
 }
 
+.reservation-label {
+  display: block;
 
+  font-size: 10px;
+  letter-spacing: 1px;
 
-
-
-
-
-/* ==========================
-   RESUMEN
-========================== */
-
-
-
-.summary-container {
-
-
-    margin-top:45px;
-
-
-    display:grid;
-
-
-    grid-template-columns:
-    repeat(auto-fit,minmax(300px,1fr));
-
-
-    gap:30px;
-
-
+  color: #8b9cab;
+  margin-bottom: 6px;
 }
 
+.reservation-main h3 {
+  margin: 0;
 
-
-
-.summary-card {
-
-
-    background:white;
-
-
-    padding:30px;
-
-
-    border-radius:18px;
-
-
-    box-shadow:
-    0 8px 25px rgba(0,0,0,0.08);
-
-
+  font-size: 24px;
+  color: #193951;
 }
 
-
-
-
-.summary-card h2 {
-
-
-    color:#1e3c72;
-
-
-    margin-bottom:20px;
-
-
+.reservation-details {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 }
 
-
-
-
-.summary-card p {
-
-
-    color:#555;
-
-
-    font-size:16px;
-
-
+.reservation-details > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.reservation-details > div > span {
+  width: 36px;
+  height: 36px;
 
+  border-radius: 10px;
 
+  background: #f2f6f9;
 
-
-.summary-card strong {
-
-
-    color:#1e3c72;
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.reservation-details small {
+  display: block;
 
+  color: #8b9cab;
+  font-size: 10px;
 
+  margin-bottom: 2px;
+}
 
+.reservation-details strong {
+  display: block;
 
-/* ==========================
+  color: #314b61;
+  font-size: 13px;
+}
+
+.active-status {
+  padding: 6px 12px;
+
+  border-radius: 20px;
+
+  background: #e6f5ec;
+  color: #2f8050;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* =========================================
+   SIN RESERVA
+========================================= */
+
+.empty-reservation {
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding-top: 20px;
+}
+
+.empty-reservation-icon {
+  width: 62px;
+  height: 62px;
+
+  flex-shrink: 0;
+
+  border-radius: 16px;
+
+  background: #f3f6f8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27px;
+}
+
+.empty-reservation h3 {
+  margin: 0 0 5px;
+
+  font-size: 16px;
+  color: #29445a;
+}
+
+.empty-reservation p {
+  margin: 0;
+
+  color: #81919e;
+  font-size: 13px;
+}
+
+.empty-reservation button {
+  margin-left: auto;
+
+  border: none;
+
+  padding: 11px 17px;
+
+  border-radius: 10px;
+
+  background: #244b69;
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 12px;
+
+  transition: .2s;
+}
+
+.empty-reservation button:hover {
+  background: #193951;
+}
+
+/* =========================================
+   ESTADÍSTICAS
+========================================= */
+
+.dashboard-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  background: white;
+
+  border: 1px solid #e4eaf0;
+  border-radius: 16px;
+
+  padding: 19px 21px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  box-shadow: 0 6px 18px rgba(30, 55, 75, .04);
+}
+
+.stat-card-icon {
+  width: 43px;
+  height: 43px;
+
+  border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 19px;
+}
+
+.stat-card-icon.blue {
+  background: #edf4fa;
+}
+
+.stat-card-icon.green {
+  background: #edf7f0;
+}
+
+.stat-card-icon.orange {
+  background: #fff5e9;
+}
+
+.stat-card span {
+  display: block;
+
+  color: #7c8e9c;
+
+  font-size: 11px;
+
+  margin-bottom: 3px;
+}
+
+.stat-card strong {
+  color: #203e55;
+
+  font-size: 22px;
+}
+
+/* =========================================
+   ACTIVIDAD
+========================================= */
+
+.activity-section {
+  background: white;
+
+  border: 1px solid #e4eaf0;
+  border-radius: 20px;
+
+  padding: 25px 28px;
+
+  box-shadow: 0 8px 25px rgba(30, 55, 75, .04);
+}
+
+.activity-heading {
+  margin-bottom: 18px;
+}
+
+.activity-list {
+  border-top: 1px solid #edf1f4;
+}
+
+.activity-item {
+  min-height: 65px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  border-bottom: 1px solid #edf1f4;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #e9f6ee;
+  color: #328151;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 13px;
+}
+
+.activity-info {
+  flex: 1;
+}
+
+.activity-info strong {
+  display: block;
+
+  color: #304a60;
+
+  font-size: 13px;
+}
+
+.activity-info span {
+  display: block;
+
+  color: #8a99a5;
+
+  font-size: 11px;
+
+  margin-top: 3px;
+}
+
+.activity-status {
+  color: #328151;
+
+  background: #edf7f0;
+
+  padding: 5px 9px;
+
+  border-radius: 12px;
+
+  font-size: 10px;
+}
+
+.no-activity {
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #8b9aa6;
+
+  font-size: 13px;
+}
+
+/* =========================================
    RESPONSIVE
-========================== */
+========================================= */
 
+@media (max-width: 1000px) {
 
-@media(max-width:768px){
-
-
-    .dashboard-header {
-
-        padding:0 20px;
-
-    }
-
-
-    .dashboard-content {
-
-        padding:30px 20px;
-
-    }
-
-
-    .user-area span {
-
-        display:none;
-
-    }
-
-
-}
-
-.btn-bell{
-
-    width:45px;
-    height:45px;
-
-    border:none;
-    border-radius:50%;
-
-    background:#2563eb;
-    color:white;
-
-    font-size:20px;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.btn-bell:hover{
-
-    transform:scale(1.08);
-
-    background:#1d4ed8;
-
-}
-/* CAMPANA DE NOTIFICACIONES */
-
-.notificacion-icon {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-.btn-notificacion {
-
-    background: transparent;
-
-    border: none;
-
-    font-size: 25px;
-
-    cursor: pointer;
-
-    position: relative;
-
-}
-
-
-
-.contador-notificacion {
-
-    position: absolute;
-
-    top: -8px;
-
-    right: -8px;
-
-    background: #ef4444;
-
-    color: white;
-
-    width: 20px;
-
-    height: 20px;
-
-    border-radius: 50%;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-}
-
-
-
-.btn-notificacion:hover {
-
-    transform: scale(1.1);
-
-}
-
-/* RESUMEN DASHBOARD */
-
-.summary-container {
-
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    margin-top: 35px;
-
-}
-
-
-
-.summary-card {
-
-    background: white;
-
-    border-radius: 18px;
-
+  .dashboard-main {
+    margin-left: 0;
     padding: 25px;
+  }
 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  .reservation-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-}
-
-
-
-.summary-header h2 {
-
-    margin-bottom: 20px;
-
-    color: #1e293b;
-
-    font-size: 22px;
+  .reservation-details {
+    flex-wrap: wrap;
+  }
 
 }
 
+@media (max-width: 700px) {
 
+  .dashboard-topbar {
+    flex-direction: column;
+    gap: 18px;
+  }
 
-.reserva-info h3 {
+  .dashboard-tools {
+    width: 100%;
+  }
 
-    color: #2563eb;
+  .clock-box {
+    flex: 1;
+  }
 
-    margin-bottom: 15px;
+  .dashboard-heading h1 {
+    font-size: 25px;
+  }
 
-}
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
 
+  .empty-reservation {
+    flex-wrap: wrap;
+  }
 
-
-.reserva-info p {
-
-    color: #475569;
-
-    margin: 10px 0;
-
-}
-
-
-
-.estado-activa {
-
-    display: inline-block;
-
-    margin-top: 15px;
-
-    padding: 6px 15px;
-
-    border-radius: 20px;
-
-    background: #dcfce7;
-
-    color: #166534;
-
-    font-weight: bold;
-
-    font-size: 14px;
+  .empty-reservation button {
+    margin-left: 0;
+  }
 
 }
 
+@media (max-width: 500px) {
 
+  .dashboard-main {
+    padding: 20px 15px;
+  }
 
-.estadistica-item {
+  .main-reservation,
+  .activity-section {
+    padding: 20px;
+  }
 
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    background: #f8fafc;
-
-    padding: 15px;
-
-    border-radius: 12px;
-
-    margin-bottom: 12px;
-
-}
-
-
-
-.estadistica-item span {
-
-    color: #475569;
-
-}
-
-
-
-.estadistica-item strong {
-
-    font-size: 22px;
-
-    color: #2563eb;
-
-}
-
-
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-    .summary-container{
-
-        grid-template-columns:1fr;
-
-    }
+  .reservation-details {
+    gap: 15px;
+  }
 
 }

@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "./NavBar.css";
 
-function Navbar() {
+function NavBar() {
   return (
     <nav className="navbar">
-      <div className="logo">
-        SmartReserve
-      </div>
+      <div className="logo">SmartReserve</div>
 
       <ul className="menu">
         <li><a href="#inicio">Inicio</a></li>
@@ -22,6 +20,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
-
-
+export default NavBar;

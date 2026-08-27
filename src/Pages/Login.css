@@ -1,265 +1,378 @@
+/* =========================================================
+   SMARTRESERVE - LOGIN
+   TARJETA COMPACTA SIN REDUCIR EL ANCHO
+   ========================================================= */
+
 .login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
 
-  min-height:100vh;
+  background-image:
+    linear-gradient(
+      rgba(15, 23, 42, 0.35),
+      rgba(37, 99, 235, 0.25)
+    ),
+    url("../assets/smartreserve.png");
 
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
-
- background-image:
- linear-gradient(
-  rgba(15,23,42,0.35),
-  rgba(37,99,235,0.25)
-),
-url("../assets/smartreserve.png");
-
-  background-size:cover;
-
-  background-position:center;
-
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 
-/* TARJETA */
+/* =========================================================
+   TARJETA PRINCIPAL
+   ========================================================= */
 
 .login-box {
+  width: 380px;
+  max-width: 100%;
 
-  width:380px;
+  padding: 18px 34px 16px;
 
-  padding:45px;
+  box-sizing: border-box;
 
-  background:rgba(255,255,255,0.95);
+  background: rgba(255, 255, 255, 0.95);
 
-  border-radius:25px;
+  border-radius: 22px;
 
-  text-align:center;
+  text-align: center;
 
   box-shadow:
-  0 20px 40px rgba(0,0,0,0.25);
-
+    0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 
-
-/* TITULO */
-
+/* =========================================================
+   SMARTRESERVE
+   ========================================================= */
 
 .login-box h1 {
+  margin: 0 0 1px;
 
-  color:#2563eb;
+  color: #2563eb;
 
-  font-size:38px;
-
-  margin-bottom:10px;
-
+  font-size: 34px;
+  line-height: 1.1;
 }
 
+
+/* =========================================================
+   INICIAR SESIÓN
+   ========================================================= */
 
 .login-box h2 {
+  margin: 0 0 9px;
 
-  color:#1e293b;
+  color: #1e293b;
 
-  margin-bottom:30px;
-
+  font-size: 21px;
+  line-height: 1.15;
 }
 
 
+/* =========================================================
+   FORMULARIO
+   ========================================================= */
 
+.login-form {
+  width: 100%;
 
-/* CAMPOS */
+  display: flex;
+  flex-direction: column;
 
+  gap: 5px;
 
-.login-box input {
-
-  width:100%;
-
-  padding:14px;
-
-  margin-bottom:15px;
-
-  border-radius:10px;
-
-  border:1px solid #cbd5e1;
-
-  font-size:16px;
-
-  box-sizing:border-box;
-
+  margin: 0;
+  padding: 0;
 }
 
 
+/* =========================================================
+   CONTENEDORES DE CAMPOS
+   ========================================================= */
 
+.login-field {
+  width: 100%;
 
-/* BOTON */
-
-
-.login-box button {
-
-  width:100%;
-
-  padding:14px;
-
-  background:#2563eb;
-
-  color:white;
-
-  border:none;
-
-  border-radius:12px;
-
-  font-size:17px;
-
-  font-weight:bold;
-
-  cursor:pointer;
-
-  transition:.3s;
-
+  margin: 0;
+  padding: 0;
 }
 
 
+/* =========================================================
+   INPUTS Y SELECT
+   ========================================================= */
 
-.login-box button:hover {
+.login-box input,
+.login-select {
+  width: 100%;
+  height: 40px;
 
-  background:#1d4ed8;
+  margin: 0;
+  padding: 8px 12px;
 
-  transform:translateY(-2px);
+  box-sizing: border-box;
 
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #1e293b;
+
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.login-box input::placeholder {
+  color: #64748b;
+}
+
+.login-box input:focus,
+.login-select:focus {
+  border-color: #2563eb;
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 
+/* =========================================================
+   CONTRASEÑA
+   ========================================================= */
 
+.password-container {
+  position: relative;
 
-.login-box p {
+  width: 100%;
+  height: 40px;
 
-  margin-top:25px;
+  margin: 0;
+  padding: 0;
 
-  color:#64748b;
-
+  box-sizing: border-box;
 }
 
-.login-links{
+.password-container input {
+  width: 100%;
+  height: 40px;
 
-margin-top:22px;
+  margin: 0;
 
-display:flex;
+  padding: 8px 42px 8px 12px;
 
-flex-direction:column;
-
-gap:12px;
-
+  box-sizing: border-box;
 }
 
-.login-links a{
 
-color:#2563eb;
+/* =========================================================
+   OJO DE CONTRASEÑA
+   ========================================================= */
 
-font-weight:600;
+.password-container .toggle-password {
+  position: absolute;
 
-text-decoration:none;
+  top: 50%;
+  right: 10px;
 
+  width: 25px;
+  height: 25px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #64748b;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  z-index: 5;
 }
 
-.login-links a:hover{
-
-text-decoration:underline;
-
-}
-/* Select igual a los inputs */
-
-.login-select{
-
-width:100%;
-
-padding:14px;
-
-margin-bottom:15px;
-
-border-radius:10px;
-
-border:1px solid #cbd5e1;
-
-font-size:16px;
-
-box-sizing:border-box;
-
-background:white;
-
+.password-container .toggle-password:hover {
+  color: #2563eb;
 }
 
-/* Enlace de recuperar */
-
-.forgot-password{
-
-text-align:right;
-
-margin:-5px 0 18px;
-
+.password-container .toggle-password svg {
+  width: 17px;
+  height: 17px;
 }
 
-.forgot-password a{
 
-color:#2563eb;
+/* =========================================================
+   SELECTOR
+   ========================================================= */
 
-font-size:14px;
-
-text-decoration:none;
-
-font-weight:600;
-
-transition:.3s;
-
+.login-select {
+  cursor: pointer;
 }
 
-.forgot-password a:hover{
 
-color:#1d4ed8;
+/* =========================================================
+   BOTÓN INGRESAR
+   ========================================================= */
 
-text-decoration:underline;
+.login-button {
+  width: 100%;
+  height: 40px;
 
+  margin: 2px 0 0;
+  padding: 8px 10px;
+
+  box-sizing: border-box;
+
+  background: #2563eb;
+
+  color: #ffffff;
+
+  border: none;
+  border-radius: 10px;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
-/* Texto del registro */
-
-.register-text{
-
-margin-top:25px;
-
-color:#64748b;
-
+.login-button:hover {
+  background: #1d4ed8;
 }
 
-.register-text a{
-
-color:#2563eb;
-
-font-weight:bold;
-
-text-decoration:none;
-
+.login-button:active {
+  transform: translateY(1px);
 }
 
-.register-text a:hover{
 
-text-decoration:underline;
+/* =========================================================
+   MENSAJE DE ERROR
+   ========================================================= */
 
+.error-message {
+  margin: 1px 0;
+
+  padding: 5px 8px;
+
+  box-sizing: border-box;
+
+  color: #b91c1c;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  line-height: 1.25;
+
+  text-align: center;
 }
-/* Enlace recuperar contraseña */
 
-.forgot-password{
-  margin-top:15px;
-  margin-bottom:5px;
-  text-align:center;
+
+/* =========================================================
+   OLVIDASTE TU CONTRASEÑA
+   ========================================================= */
+
+.forgot-password {
+  margin: 7px 0 0;
+
+  line-height: 1.2;
+
+  text-align: center;
 }
 
-.forgot-password a{
-  color:#2563eb;
-  font-weight:600;
-  text-decoration:none;
+.forgot-password a {
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
 }
 
-.forgot-password a:hover{
-  text-decoration:underline;
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   REGISTRO
+   ========================================================= */
+
+.register-text {
+  margin: 4px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.register-text a {
+  color: #2563eb;
+
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .login-page {
+    padding: 12px;
+  }
+
+  .login-box {
+    width: 100%;
+    max-width: 360px;
+
+    padding: 17px 25px 15px;
+  }
+
+  .login-box h1 {
+    font-size: 31px;
+  }
+
+  .login-box h2 {
+    font-size: 19px;
+    margin-bottom: 8px;
+  }
+
+  .login-form {
+    gap: 5px;
+  }
+
+  .login-box input,
+  .login-select,
+  .password-container,
+  .password-container input,
+  .login-button {
+    height: 40px;
+  }
 }

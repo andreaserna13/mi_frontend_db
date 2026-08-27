@@ -98,8 +98,9 @@ const Login = ({ logueado, tipoUsuario, setLogueado, setTipoUsuario }) => {
               required
             >
               <option value="" disabled>Tipo de Usuario</option>
-              <option value="administrador">Administrador</option>
-              <option value="usuario">Usuario</option>
+              <option value="admin">
+              Administrador
+            </option>              <option value="usuario">Usuario</option>
             </select>
           </div>
 

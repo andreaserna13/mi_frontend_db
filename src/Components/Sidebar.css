@@ -1,0 +1,247 @@
+/* ==========================================
+   SMARTRESERVE SIDEBAR
+========================================== */
+
+.sidebar {
+  width: 270px;
+  height: 100vh;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  background: linear-gradient(
+    180deg,
+    #16314d 0%,
+    #1e3a5f 100%
+  );
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 25px 18px;
+
+  box-sizing: border-box;
+
+  z-index: 1000;
+}
+
+/* ==========================================
+   MARCA
+========================================== */
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 0 7px;
+
+  margin-bottom: 30px;
+}
+
+.logo-box {
+  width: 46px;
+  height: 46px;
+
+  flex-shrink: 0;
+
+  background: white;
+  color: #16314d;
+
+  border-radius: 13px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.sidebar-brand h2 {
+  margin: 0;
+
+  font-size: 20px;
+
+  color: white;
+}
+
+.sidebar-brand span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #a9bfd2;
+
+  font-size: 10px;
+}
+
+/* ==========================================
+   USUARIO
+========================================== */
+
+.sidebar-user {
+  background: rgba(255, 255, 255, .08);
+
+  border: 1px solid rgba(255, 255, 255, .08);
+
+  border-radius: 14px;
+
+  padding: 14px 15px;
+
+  margin-bottom: 28px;
+}
+
+.sidebar-user p {
+  margin: 0 0 4px;
+
+  color: #a9bfd2;
+
+  font-size: 11px;
+}
+
+.sidebar-user strong {
+  color: white;
+
+  font-size: 15px;
+}
+
+/* ==========================================
+   MENU
+========================================== */
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.menu-item {
+  color: #dce7f0;
+
+  text-decoration: none;
+
+  padding: 13px 14px;
+
+  border-radius: 11px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 14px;
+
+  transition: .2s;
+}
+
+.menu-item span {
+  width: 22px;
+
+  text-align: center;
+
+  font-size: 17px;
+}
+
+.menu-item:hover {
+  background: rgba(255, 255, 255, .09);
+
+  color: white;
+}
+
+.menu-item.active {
+  background: #355a84;
+
+  color: white;
+
+  box-shadow: inset 3px 0 0 #ffffff;
+}
+
+/* ==========================================
+   CERRAR SESION
+========================================== */
+
+.logout-btn {
+  margin-top: auto;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, .06);
+
+  border: 1px solid rgba(255, 255, 255, .08);
+
+  color: white;
+
+  text-align: left;
+
+  padding: 13px 14px;
+
+  border-radius: 11px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  transition: .2s;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, .13);
+}
+
+.logout-btn span {
+  width: 22px;
+  text-align: center;
+  font-size: 17px;
+}
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+  .sidebar {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    min-height: auto;
+
+    padding: 15px;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 15px;
+  }
+
+  .sidebar-user {
+    margin-bottom: 15px;
+  }
+
+  .sidebar-menu {
+    flex-direction: row;
+
+    flex-wrap: wrap;
+  }
+
+  .menu-item {
+    flex: 1;
+    min-width: 130px;
+  }
+
+  .logout-btn {
+    margin-top: 15px;
+  }
+
+}

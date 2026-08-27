@@ -1,66 +1,347 @@
-/* RecuperarContraseña.css */
+/* =====================================================
+   SMARTRESERVE - RECUPERAR CONTRASEÑA
+   Diseño premium y consistente con la plataforma
+===================================================== */
+
 .recuperar-container {
-  position: fixed; /* Para centrar en pantalla completa */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Centra exactamente */
-  width: 90%;
-  max-width: 400px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 40px 20px;
+  box-sizing: border-box;
+
+  font-family: "Segoe UI", Arial, sans-serif;
+
+  background:
+    radial-gradient(circle at 15% 20%, rgba(51, 78, 104, 0.08), transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(100, 116, 139, 0.06), transparent 30%),
+    linear-gradient(135deg, #EEF3F7 0%, #F8FAFC 100%);
+}
+
+/* =========================
+   TARJETA CENTRAL
+========================= */
+
+.recuperar-card {
+  width: 100%;
+  max-width: 450px;
+
+  padding: 42px 40px;
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.97);
+
+  border: 1px solid #E5E7EB;
+  border-radius: 22px;
+
+  box-shadow:
+    0 24px 60px rgba(30, 41, 59, 0.12),
+    0 8px 20px rgba(30, 41, 59, 0.06);
+
+  animation: aparecer 0.45s ease;
+}
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+@keyframes aparecer {
+
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+/* =========================
+   ICONO
+========================= */
+
+.recuperar-icono {
+  width: 68px;
+  height: 68px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #E7EDF2,
+      #F5F7F9
+    );
+
+  border: 1px solid #DCE3E8;
+
+  color: #334E68;
+
+  font-size: 30px;
+
+  box-shadow:
+    0 8px 18px rgba(30, 41, 59, 0.08);
+}
+
+/* =========================
+   SMARTRESERVE
+========================= */
+
+.recuperar-card h1 {
+  margin: 0;
+
+  text-align: center;
+
+  color: #334E68;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.3px;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+
+.recuperar-card h2 {
+  margin: 8px 0 12px;
+
+  text-align: center;
+
+  color: #1E293B;
+
+  font-size: 28px;
+
+  font-weight: 700;
+}
+
+/* =========================
+   DESCRIPCIÓN
+========================= */
+
+.recuperar-descripcion {
+  max-width: 340px;
+
+  margin: 0 auto 30px;
+
+  text-align: center;
+
+  color: #64748B;
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.recuperar-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   CAMPOS
+========================= */
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #334155;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #D6DEE5;
   border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
-  font-family: Arial, sans-serif;
-  backdrop-filter: blur(8px); /* Hace que el fondo sea borroso (opcional) */
-  -webkit-backdrop-filter: blur(8px);
+
+  background: white;
+
+  color: #1E293B;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease;
 }
 
-.recuperar-container h2 {
+.form-group input::placeholder {
+  color: #9AA8B5;
+}
+
+.form-group input:focus {
+  border-color: #58718A;
+
+  box-shadow:
+    0 0 0 4px rgba(88, 113, 138, .10);
+}
+
+/* =========================
+   MENSAJES
+========================= */
+
+.mensaje {
+  padding: 12px;
+
+  margin-bottom: 18px;
+
+  border-radius: 9px;
+
+  background: #F3F6F8;
+
+  border: 1px solid #DCE3E8;
+
+  color: #475569;
+
   text-align: center;
-  margin-bottom: 20px;
-  color: #074fea;
+
+  font-size: 13px;
 }
 
-.recuperar-container input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
+/* =========================
+   BOTÓN PRINCIPAL
+========================= */
 
-.recuperar-container button {
+.btn-recuperar {
   width: 100%;
-  padding: 10px;
-  background-color: #074fea;
-  color: white;
+  height: 48px;
+
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #334E68,
+      #243B53
+    );
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+
+  box-shadow:
+    0 8px 18px rgba(36, 59, 83, .20);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
 }
 
-.recuperar-container button:hover {
-  background-color: #0756e4;
+.btn-recuperar:hover {
+
+  background:
+    linear-gradient(
+      135deg,
+      #2F465B,
+      #1F3347
+    );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 12px 24px rgba(36, 59, 83, .25);
 }
 
-.recuperar-container p {
-  margin-top: 15px;
-  text-align: center;
-  font-weight: bold;
-  color: green;
+/* =========================
+   BOTÓN VOLVER
+========================= */
+
+.btn-volver {
+  width: 100%;
+  height: 45px;
+
+  margin-top: 12px;
+
+  border: 1px solid #D6DEE5;
+  border-radius: 10px;
+
+  background: white;
+
+  color: #526476;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    border-color .2s ease,
+    color .2s ease;
 }
 
+.btn-volver:hover {
+  background: #F7F9FB;
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  border-color: #BCC9D3;
+
+  color: #334E68;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width:520px){
+
+  .recuperar-container{
+    padding:25px 15px;
+  }
+
+  .recuperar-card{
+    padding:32px 24px;
+    border-radius:18px;
+  }
+
+  .recuperar-card h2{
+    font-size:24px;
+  }
+
+  .recuperar-icono{
+    width:60px;
+    height:60px;
+    font-size:26px;
+  }
+
+}

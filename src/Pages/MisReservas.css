@@ -1,0 +1,145 @@
+/* =====================================================
+   SMARTRESERVE - MIS RESERVAS
+===================================================== */
+
+.page-container{
+    min-height:100vh;
+    padding:45px;
+    box-sizing:border-box;
+    font-family:"Segoe UI",Arial,sans-serif;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(51,78,104,.06), transparent 35%),
+      radial-gradient(circle at 85% 80%, rgba(100,116,139,.05), transparent 30%),
+      linear-gradient(135deg,#EEF3F7,#F8FAFC);
+}
+
+/* CABECERA */
+
+.page-header{
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:22px;
+    padding:30px;
+    margin-bottom:28px;
+    box-shadow:0 14px 35px rgba(30,41,59,.06);
+}
+
+.page-header h1{
+    margin:18px 0 10px;
+    color:#1E293B;
+    font-size:34px;
+}
+
+.page-header p{
+    margin:0;
+    color:#64748B;
+}
+
+/* BOTÓN VOLVER */
+
+.btn-volver{
+    border:1px solid #D6DEE5;
+    background:white;
+    color:#526476;
+    padding:11px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn-volver:hover{
+    background:#F7F9FB;
+    color:#334E68;
+}
+
+/* TARJETA */
+
+.page-card{
+    background:white;
+    border:1px solid #E5E7EB;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 12px 28px rgba(30,41,59,.05);
+    overflow:auto;
+}
+
+/* TABLA */
+
+.tabla-reservas{
+    width:100%;
+    border-collapse:collapse;
+    min-width:760px;
+}
+
+.tabla-reservas thead{
+    background:#F8FAFC;
+}
+
+.tabla-reservas th{
+    padding:16px;
+    text-align:left;
+    color:#334E68;
+    font-size:14px;
+    border-bottom:1px solid #E5E7EB;
+}
+
+.tabla-reservas td{
+    padding:16px;
+    border-bottom:1px solid #EEF2F5;
+    color:#475569;
+}
+
+.tabla-reservas tbody tr:hover{
+    background:#F8FAFC;
+}
+
+/* ESTADO */
+
+.tabla-reservas td:nth-child(6){
+    color:#15803D;
+    font-weight:600;
+}
+
+/* BOTÓN CANCELAR */
+
+.btn-cancelar{
+    border:none;
+    border-radius:10px;
+    padding:10px 16px;
+    background:linear-gradient(135deg,#DC2626,#B91C1C);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn-cancelar:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(185,28,28,.22);
+}
+
+/* MENSAJE SIN RESERVAS */
+
+.page-card p{
+    text-align:center;
+    color:#64748B;
+    padding:30px 0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+    .page-container{
+        padding:25px 18px;
+    }
+
+    .page-header{
+        padding:24px;
+    }
+
+    .page-header h1{
+        font-size:28px;
+    }
+}

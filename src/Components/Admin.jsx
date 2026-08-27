@@ -1,104 +1,151 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './reservas.css';
+import { useState } from "react";
+import {
+  FaHome,
+  FaUsers,
+  FaCalendarAlt,
+  FaBell,
+  FaCog,
+  FaShieldAlt,
+  FaSignOutAlt,
+  FaBars,
+} from "react-icons/fa";
 
-const AdminPanel = ({ setLogueado }) => {
-  const [section, setSection] = useState(null);
-  const navigate = useNavigate();
+import DashboardAdmin from "./DashboardAdmin";
+import UsuariosAdmin from "./UsuariosAdmin";
+import ReservasAdmin from "./ReservasAdmin";
+import NotificacionesAdmin from "./NotificacionesAdmin";
+import ConfiguracionAdmin from "./ConfiguracionAdmin";
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');    // Limpia token almacenado
-    setLogueado(false);                  // Cambia estado global
-    navigate('/');                       // Redirige al login (ajusta si usas otra ruta como '/login')
+import "../AdminPanel.css";
+
+export default function AdminPanel() {
+  const usuarioActual =
+    JSON.parse(localStorage.getItem("usuario")) || {
+      nombre: "Administrador",
+      tipoUsuario: "admin",
+    };
+
+  const [section, setSection] = useState("inicio");
+  const [menuAbierto, setMenuAbierto] = useState(false);
+
+  const cerrarSesion = () => {
+    if (!window.confirm("¿Deseas cerrar sesión?")) return;
+
+    localStorage.removeItem("usuario");
+    window.location.href = "/login";
   };
 
-  const renderSection = () => {
+  const renderContenido = () => {
     switch (section) {
-      case 'verUsuarios':
-        return <p>Aquí se mostrarán los usuarios registrados.</p>;
-      case 'agregarUsuario':
-        return (
-          <form>
-            <h3>Agregar Usuario</h3>
-            <input type="text" placeholder="Nombre" />
-            <input type="email" placeholder="Correo" />
-            <button className="action-button" type="submit">Guardar</button>
-          </form>
-        );
-      case 'verPermisos':
-        return <p>Aquí se mostrarán los permisos asignados.</p>;
-      case 'modificarPermisos':
-        return (
-          <form>
-            <h3>Modificar Permisos</h3>
-            <input type="text" placeholder="ID Usuario" />
-            <select>
-              <option value="admin">Administrador</option>
-              <option value="user">Usuario</option>
-            </select>
-            <button className="action-button" type="submit">Actualizar</button>
-          </form>
-        );
-      case 'crearReserva':
-        return (
-          <form>
-            <h3>Crear Reserva</h3>
-            <input type="text" placeholder="Sala" />
-            <input type="datetime-local" />
-            <button className="action-button" type="submit">Reservar</button>
-          </form>
-        );
-      case 'cancelarReserva':
-        return (
-          <form>
-            <h3>Cancelar Reserva</h3>
-            <input type="text" placeholder="ID de la reserva" />
-            <button className="cancel-button" type="submit">Cancelar</button>
-          </form>
-        );
+      case "usuarios":
+        return <UsuariosAdmin usuarioActual={usuarioActual} />;
+
+      case "reservas":
+        return <ReservasAdmin usuarioActual={usuarioActual} />;
+
+      case "notificaciones":
+        return <NotificacionesAdmin />;
+
+      case "configuracion":
+        return <ConfiguracionAdmin />;
+
       default:
-        return <p>Selecciona una opción para administrar.</p>;
+        return <DashboardAdmin usuarioActual={usuarioActual} />;
     }
   };
 
   return (
-    <div className="reservas-container" style={{ backgroundImage: 'url(/sala-de-reunio.jpeg)' }}>
-      <div className="reservas-header">
-        <h1 className="titulo-principal">Panel de Administración</h1>
-        <div className="header-right">
-          <button className="logout-button" onClick={handleLogout}>Cerrar Sesión</button>
-        </div>
-      </div>
+    <div className="admin-panel">
+      <aside className={`admin-sidebar ${menuAbierto ? "open" : ""}`}>
+        <div className="admin-sidebar-header">
+          <div className="admin-logo">
+            <FaShieldAlt />
+          </div>
 
-      <div className="form-container">
-        <div className="form-section">
-          <h2>Gestión de Usuarios</h2>
-          <button className="action-button" onClick={() => setSection('verUsuarios')}>Ver Usuarios</button>
-          <button className="action-button" onClick={() => setSection('agregarUsuario')}>Agregar Usuario</button>
+          <div>
+            <h2>SmartReserve</h2>
+            <span>Administrador</span>
+          </div>
         </div>
 
-        <div className="form-section">
-          <h2>Gestión de Permisos</h2>
-          <button className="action-button" onClick={() => setSection('verPermisos')}>Ver Permisos</button>
-          <button className="action-button" onClick={() => setSection('modificarPermisos')}>Modificar Permisos</button>
-        </div>
+        <nav className="admin-navigation">
+          <button
+            className={section === "inicio" ? "active" : ""}
+            onClick={() => setSection("inicio")}
+          >
+            <FaHome />
+            Inicio
+          </button>
 
-        <div className="form-section">
-          <h2>Reservas del Administrador</h2>
-          <button className="action-button" onClick={() => setSection('crearReserva')}>Crear Reserva</button>
-          <button className="action-button cancel-button" onClick={() => setSection('cancelarReserva')}>Cancelar Reserva</button>
-        </div>
+          <button
+            className={section === "usuarios" ? "active" : ""}
+            onClick={() => setSection("usuarios")}
+          >
+            <FaUsers />
+            Usuarios
+          </button>
 
-        <div className="form-section">
-          {renderSection()}
+          <button
+            className={section === "reservas" ? "active" : ""}
+            onClick={() => setSection("reservas")}
+          >
+            <FaCalendarAlt />
+            Reservas
+          </button>
+
+          <button
+            className={section === "notificaciones" ? "active" : ""}
+            onClick={() => setSection("notificaciones")}
+          >
+            <FaBell />
+            Notificaciones
+          </button>
+
+          <button
+            className={section === "configuracion" ? "active" : ""}
+            onClick={() => setSection("configuracion")}
+          >
+            <FaCog />
+            Configuración
+          </button>
+        </nav>
+
+        <div className="admin-sidebar-footer">
+          <button onClick={cerrarSesion}>
+            <FaSignOutAlt />
+            Cerrar sesión
+          </button>
         </div>
-      </div>
+      </aside>
+
+      <main className="admin-main">
+        <header className="admin-topbar">
+          <button
+            className="admin-menu-button"
+            onClick={() => setMenuAbierto(!menuAbierto)}
+          >
+            <FaBars />
+          </button>
+
+          <div className="admin-topbar-title">
+            <span>Panel administrativo</span>
+            <h1>SmartReserve</h1>
+          </div>
+
+          <div className="admin-user-info">
+            <div className="admin-user-avatar">
+              {usuarioActual.nombre.charAt(0).toUpperCase()}
+            </div>
+
+            <div>
+              <strong>{usuarioActual.nombre}</strong>
+              <span>Administrador</span>
+            </div>
+          </div>
+        </header>
+
+        <div className="admin-content">{renderContenido()}</div>
+      </main>
     </div>
   );
-};
-
-export default AdminPanel;
-
-
-
-
+}

@@ -1,90 +1,126 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './RecuperarContraseña.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./RecuperarContraseña.css";
 
-function RecuperarContraseña() {
-  const [correo, setCorreo] = useState('');
-  const [mensaje, setMensaje] = useState('');
-  const [error, setError] = useState(false);
+function RecuperarContrasena() {
   const navigate = useNavigate();
+
+  const [nombre, setNombre] = useState("");
+  const [respuestaSeguridad, setRespuestaSeguridad] = useState("");
+  const [nuevaClave, setNuevaClave] = useState("");
+  const [mensaje, setMensaje] = useState("");
+
+  const URL_BACKEND = import.meta.env.VITE_API_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setMensaje("");
+
     try {
-      const response = await fetch('http://localhost:3001/api/auth/recuperar-contrasena', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ correo }),
+      const response = await fetch(`${URL_BACKEND}/api/auth/recuperar`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nombre,
+          respuestaSeguridad,
+          nuevaClave,
+        }),
       });
 
       const data = await response.json();
-
-      if (response.ok) {
-        setMensaje(data.mensaje || 'Correo enviado con instrucciones');
-        setError(false);
-        setCorreo('');
-      } else {
-        setMensaje(data.mensaje || 'Error al enviar el correo');
-        setError(true);
-      }
+      setMensaje(data.mensaje);
     } catch (error) {
-      setMensaje('Error al enviar el correo');
-      setError(true);
+      console.error(error);
+      setMensaje("Error de conexión con el servidor");
     }
   };
 
   return (
-    <form className="recuperar-container" onSubmit={handleSubmit}>
-      <h2>Recuperar Contraseña</h2>
-      <input
-        type="email"
-        placeholder="Ingresa tu correo"
-        value={correo}
-        onChange={(e) => setCorreo(e.target.value)}
-        required
-      />
-      <button type="submit">Enviar</button>
+    <div className="recuperar-container">
 
-      <button
-        type="button"
-        onClick={() => navigate('/')}
-        style={{ marginTop: '10px' }}
-      >
-        Volver al inicio
-      </button>
+      <div className="recuperar-card">
 
-      {mensaje && (
-        <p style={{ color: error ? 'red' : 'green', marginTop: '10px' }}>
-          {mensaje}
+        <div className="recuperar-icono">
+          🔐
+        </div>
+
+        <h1>SmartReserve</h1>
+
+        <h2>Recuperar Contraseña</h2>
+
+        <p className="recuperar-descripcion">
+          Recupera el acceso a tu cuenta de forma segura respondiendo tu
+          pregunta de seguridad.
         </p>
-      )}
-    </form>
+
+        <form onSubmit={handleSubmit}>
+
+          <div className="form-group">
+            <label>Nombre de usuario</label>
+
+            <input
+              type="text"
+              placeholder="Ingresa tu nombre de usuario"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Respuesta de seguridad</label>
+
+            <input
+              type="text"
+              placeholder="Escribe tu respuesta"
+              value={respuestaSeguridad}
+              onChange={(e) => setRespuestaSeguridad(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Nueva contraseña</label>
+
+            <input
+              type="password"
+              placeholder="Ingresa tu nueva contraseña"
+              value={nuevaClave}
+              onChange={(e) => setNuevaClave(e.target.value)}
+              required
+            />
+          </div>
+
+          {mensaje && (
+            <div className="mensaje">
+              {mensaje}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn-recuperar"
+          >
+            Cambiar contraseña
+          </button>
+
+          <button
+            type="button"
+            className="btn-volver"
+            onClick={() => navigate("/login")}
+          >
+            ← Volver al Login
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
   );
 }
 
-export default RecuperarContraseña;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default RecuperarContrasena;

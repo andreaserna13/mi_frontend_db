@@ -1,9 +1,12 @@
 .feature-card{
-    width:320px;
+    width:100%;
+    max-width:340px;
     background:white;
     border-radius:20px;
-    padding:35px;
+    padding:35px 30px;
     text-align:center;
+
+    border:1px solid rgba(37,99,235,.08);
 
     box-shadow:0 12px 35px rgba(0,0,0,.08);
 
@@ -14,7 +17,7 @@
 
     transform:translateY(-10px);
 
-    box-shadow:0 20px 45px rgba(37,99,235,.20);
+    box-shadow:0 20px 45px rgba(37,99,235,.18);
 
 }
 
@@ -27,7 +30,9 @@
 
     border-radius:50%;
 
-    background:#EEF4FF;
+    background:#2563EB;
+
+    color:white;
 
     display:flex;
 
@@ -35,7 +40,7 @@
 
     align-items:center;
 
-    font-size:38px;
+    font-size:36px;
 
     margin-bottom:25px;
 
@@ -47,11 +52,13 @@
 
     margin-bottom:15px;
 
+    font-size:22px;
+
 }
 
 .feature-card p{
 
-    color:#666;
+    color:#64748B;
 
     line-height:1.8;
 
