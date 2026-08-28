@@ -9,7 +9,7 @@ const Registro = () => {
   const [usuario, setUsuario] = useState("");
   const [contrasena, setContrasena] = useState("");
   const [confirmarContrasena, setConfirmarContrasena] = useState("");
-  const [tipoUsuario, setTipoUsuario] = useState("usuario");
+  const [tipoUsuario] = useState("usuario");
   const [preguntaSeguridad, setPreguntaSeguridad] = useState("");
   const [respuestaSeguridad, setRespuestaSeguridad] = useState("");
   const [error, setError] = useState("");
@@ -118,17 +118,6 @@ const Registro = () => {
               onChange={(e) => setConfirmarContrasena(e.target.value)}
               required
             />
-          </div>
-
-          <div className="form-group">
-            <label>Tipo de usuario</label>
-            <select
-              value={tipoUsuario}
-              onChange={(e) => setTipoUsuario(e.target.value)}
-            >
-              <option value="usuario">Usuario</option>
-              <option value="admin">Administrador</option>
-            </select>
           </div>
 
           <div className="form-group">
