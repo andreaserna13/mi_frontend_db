@@ -64,14 +64,25 @@ function Notificaciones() {
             setNotificaciones(lista);
 
             // Marcar las notificaciones actuales como vistas
-            const ids = lista.map(
-                (notificacion) => notificacion.id
-            );
+const ids = lista.map(
+    (notificacion) => Number(notificacion.id)
+);
 
-            localStorage.setItem(
-                "notificacionesVistas",
-                JSON.stringify(ids)
-            );
+const vistasAnteriores = JSON.parse(
+    localStorage.getItem("notificacionesVistas")
+) || [];
+
+const todasLasVistas = [
+    ...new Set([
+        ...vistasAnteriores.map(Number),
+        ...ids,
+    ]),
+];
+
+localStorage.setItem(
+    "notificacionesVistas",
+    JSON.stringify(todasLasVistas)
+);
 
         } catch (error) {
 
