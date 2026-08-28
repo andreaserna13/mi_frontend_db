@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FaUser,
   FaLock,
@@ -155,7 +155,7 @@ function AdminPerfil({ usuario }) {
 
         const respuestaNombre =
           await fetch(
-            `${API_BASE_URL}/api/usuario/${usuario?.id}`,
+            `${API_BASE_URL}/usuario/${usuario?.id}`,
             {
               method: "PUT",
               headers: {
@@ -208,7 +208,7 @@ function AdminPerfil({ usuario }) {
 
         const respuestaClave =
           await fetch(
-            `${API_BASE_URL}/api/usuario/${usuario?.id}/password`,
+            `${API_BASE_URL}/usuario/${usuario?.id}/password`,
             {
               method: "PUT",
               headers: {
@@ -653,3 +653,4 @@ function AdminPerfil({ usuario }) {
 }
 
 export default AdminPerfil;
+

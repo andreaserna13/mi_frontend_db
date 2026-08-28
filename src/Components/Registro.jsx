@@ -37,7 +37,7 @@ const Registro = () => {
     }
 
     try {
-      const res = await fetch(`${URL_BACKEND}/api/auth/registro`, {
+      const res = await fetch(`${URL_BACKEND}/auth/registro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

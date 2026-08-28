@@ -18,7 +18,7 @@ function RecuperarContrasena() {
     setMensaje("");
 
     try {
-      const response = await fetch(`${URL_BACKEND}/api/auth/recuperar`, {
+      const response = await fetch(`${URL_BACKEND}/auth/recuperar`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

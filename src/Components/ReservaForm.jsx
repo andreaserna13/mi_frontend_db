@@ -62,7 +62,7 @@ const ReservaForm = () => {
       setCargandoSalas(true);
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/api/salas`
+        `${API_BASE_URL}/salas`
       );
 
       if (!respuesta.ok) {

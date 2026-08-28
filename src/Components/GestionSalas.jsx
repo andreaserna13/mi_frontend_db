@@ -56,7 +56,7 @@ const GestionSalas = ({ agregarNotificacion }) => {
       setMensaje("");
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/api/salas`
+        `${API_BASE_URL}/salas`
       );
 
       if (!respuesta.ok) {
@@ -203,8 +203,8 @@ const GestionSalas = ({ agregarNotificacion }) => {
       setGuardando(true);
 
       const url = modoEdicion
-        ? `${API_BASE_URL}/api/salas/${salaEditando.id}`
-        : `${API_BASE_URL}/api/salas`;
+        ? `${API_BASE_URL}/salas/${salaEditando.id}`
+        : `${API_BASE_URL}/salas`;
 
       const metodo = modoEdicion
         ? "PUT"
@@ -311,7 +311,7 @@ const GestionSalas = ({ agregarNotificacion }) => {
       setMensaje("");
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/api/salas/${sala.id}/estado`,
+        `${API_BASE_URL}/salas/${sala.id}/estado`,
         {
           method: "PATCH",
           headers: {
