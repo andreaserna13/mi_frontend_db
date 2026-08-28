@@ -6,10 +6,24 @@ function Sidebar() {
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
 
-  const cerrarSesion = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+const cerrarSesion = () => {
+  const claveNotificaciones =
+    `notificacionesVistas_${usuario?.nombre}`;
+
+  const notificacionesVistas =
+    localStorage.getItem(claveNotificaciones);
+
+  localStorage.clear();
+
+  if (notificacionesVistas) {
+    localStorage.setItem(
+      claveNotificaciones,
+      notificacionesVistas
+    );
+  }
+
+  navigate("/");
+};
 
   return (
     <aside className="sidebar">
