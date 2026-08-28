@@ -1787,7 +1787,7 @@ const AdminPanel = () => {
 
     localStorage.removeItem("usuario");
 
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   // =========================================================
@@ -2842,6 +2842,7 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
+
 
 
 
