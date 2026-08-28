@@ -20,7 +20,7 @@ function Login() {
 
     try {
       const respuesta = await fetch(
-        `${URL_BACKEND}/auth/login`,
+        `${URL_BACKEND}/api/auth/login`,
         {
           method: "POST",
           headers: {
