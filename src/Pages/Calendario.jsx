@@ -61,9 +61,7 @@ function Calendario() {
         }
     };
 
-    const fechaSeleccionada = fecha
-        .toISOString()
-        .split("T")[0];
+    const fechaSeleccionada = fecha.toLocaleDateString("en-CA");
 
     const reservasDelDia = reservas.filter(
         (reserva) =>
@@ -127,10 +125,7 @@ function Calendario() {
 
                                 tileClassName={({ date }) => {
 
-                                    const fechaCalendario =
-                                        date
-                                            .toISOString()
-                                            .split("T")[0];
+                                    const fechaCalendario = date.toLocaleDateString("en-CA");
 
                                     const existeReserva =
                                         reservas.some(
@@ -236,3 +231,6 @@ function Calendario() {
 }
 
 export default Calendario;
+
+
+
