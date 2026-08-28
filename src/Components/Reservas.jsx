@@ -58,7 +58,7 @@ const Reservas = ({ tipoUsuario, setLogueado, setTipoUsuario }) => { // recibimo
     localStorage.removeItem('token');  // Limpiar token guardado
     setLogueado(false);                 // Cambiar estado a no logueado
     setTipoUsuario('');                 // Limpiar tipoUsuario
-    navigate('/');                     // Volver a la página de login
+    navigate('/'); // Volver a la página principal
   };
 
   return (
@@ -189,6 +189,7 @@ export default Reservas;
 
 
      
+
 
 
 

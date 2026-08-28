@@ -78,7 +78,7 @@ function Configuracion() {
    */
   const cerrarSesion = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/");
   };
 
   /*
@@ -140,7 +140,7 @@ function Configuracion() {
 
           <button
             className="config-primary-button"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/")}
           >
             Ir a iniciar sesión
           </button>

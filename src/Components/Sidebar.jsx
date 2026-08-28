@@ -8,7 +8,7 @@ function Sidebar() {
 
   const cerrarSesion = () => {
     localStorage.clear();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
