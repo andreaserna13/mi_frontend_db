@@ -10,9 +10,11 @@ function Dashboard() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
 
   const [reservas, setReservas] = useState([]);
-  const [notificacionesVistas, setNotificacionesVistas] = useState(
-    JSON.parse(localStorage.getItem("notificacionesVistas")) || []
-  );
+  const claveNotificaciones = `notificacionesVistas_${usuario?.nombre}`;
+
+const [notificacionesVistas, setNotificacionesVistas] = useState(
+  JSON.parse(localStorage.getItem(claveNotificaciones)) || []
+);
   const [horaActual, setHoraActual] = useState(new Date());
 
   useEffect(() => {
@@ -100,16 +102,19 @@ const cantidadSalasDisponibles =
   });
 
   const notificacionesPendientes = reservas.filter(
-    (reserva) => !notificacionesVistas.includes(reserva.id)
-  ).length;
+  (reserva) =>
+    !notificacionesVistas.includes(Number(reserva.id))
+).length;
 
   const abrirNotificaciones = () => {
-    const ids = reservas.map((reserva) => reserva.id);
+    const ids = reservas.map(
+  (reserva) => Number(reserva.id)
+);
 
-    localStorage.setItem(
-      "notificacionesVistas",
-      JSON.stringify(ids)
-    );
+   localStorage.setItem(
+  claveNotificaciones,
+  JSON.stringify(ids)
+);
 
     setNotificacionesVistas(ids);
 
