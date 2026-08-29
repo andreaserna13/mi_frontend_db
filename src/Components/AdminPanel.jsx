@@ -171,7 +171,7 @@ const AdminPanel = () => {
       setErrorUsuarios("");
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/usuario`
+        `${API_BASE_URL}/api/usuario`
       );
 
       if (!respuesta.ok) {
@@ -217,7 +217,7 @@ const AdminPanel = () => {
       setErrorReservas("");
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/reservas`
+        `${API_BASE_URL}/api/reservas`
       );
 
       if (!respuesta.ok) {
@@ -445,7 +445,7 @@ const AdminPanel = () => {
       setCreandoUsuario(true);
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/usuario`,
+        `${API_BASE_URL}/api/usuario`,
         {
           method: "POST",
           headers: {
@@ -530,7 +530,7 @@ const AdminPanel = () => {
       setGuardandoUsuario(true);
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/usuario/${usuarioEditando.id}`,
+        `${API_BASE_URL}/api/usuario/${usuarioEditando.id}`,
         {
           method: "PUT",
           headers: {
@@ -594,7 +594,7 @@ const AdminPanel = () => {
   const cambiarRol = async (usuario, nuevoRol) => {
     try {
       const respuesta = await fetch(
-        `${API_BASE_URL}/usuario/${usuario.id}/rol`,
+        `${API_BASE_URL}/api/usuario/${usuario.id}/rol`,
         {
           method: "PUT",
           headers: {
@@ -662,7 +662,7 @@ const AdminPanel = () => {
 
     try {
       const respuesta = await fetch(
-        `${API_BASE_URL}/usuario/${usuario.id}/estado`,
+        `${API_BASE_URL}/api/usuario/${usuario.id}/estado`,
         {
           method: "PUT",
           headers: {
@@ -791,7 +791,7 @@ const AdminPanel = () => {
       setCreandoReserva(true);
 
       const respuesta = await fetch(
-        `${API_BASE_URL}/reservas`,
+        `${API_BASE_URL}/api/reservas`,
         {
           method: "POST",
           headers: {
@@ -863,7 +863,7 @@ const AdminPanel = () => {
 
     try {
       const respuesta = await fetch(
-        `${API_BASE_URL}/reservas/${reserva.id}`,
+        `${API_BASE_URL}/api/reservas/${reserva.id}`,
         {
           method: "DELETE",
         }
