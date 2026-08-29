@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaUsers,
@@ -28,6 +29,7 @@ import GestionSalas from "./GestionSalas";
 import "./AdminPanel.css";
 
 const AdminPanel = () => {
+  const navigate = useNavigate();
   // =========================================================
   // CONFIGURACIÓN
   // =========================================================
@@ -1783,7 +1785,7 @@ const AdminPanel = () => {
 
     localStorage.removeItem("usuario");
 
-    window.location.href = "/login";
+    navigate("/");
   };
 
   // =========================================================
@@ -2851,3 +2853,4 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
+
