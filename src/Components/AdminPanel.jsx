@@ -29,7 +29,7 @@ import "./AdminPanel.css";
 
 const AdminPanel = () => {
   // =========================================================
-  // CONFIGURACIÃ“N
+  // CONFIGURACIÃƒâ€œN
   // =========================================================
 
   const API_BASE_URL =
@@ -66,8 +66,6 @@ const AdminPanel = () => {
 
   const [usuarios, setUsuarios] = useState([]);
   const [reservas, setReservas] = useState([]);
-  const [salas, setSalas] = useState([]);
-  const [estadoSala, setEstadoSala] = useState("");
   const [notificaciones, setNotificaciones] = useState([]);
 
   const [notificacionesAbiertas, setNotificacionesAbiertas] =
@@ -140,7 +138,7 @@ const AdminPanel = () => {
   const [creandoReserva, setCreandoReserva] = useState(false);
 
   // =========================================================
-  // CONFIGURACIÃ“N
+  // CONFIGURACIÃƒâ€œN
   // =========================================================
 
   const [configuracion, setConfiguracion] = useState({
@@ -155,10 +153,10 @@ const AdminPanel = () => {
   // =========================================================
 
   const preguntasSeguridad = [
-    "¿Cuál es el nombre de tu mascota?",
-    "¿Cuál es tu ciudad de nacimiento?",
-    "¿Cuál era el nombre de tu colegio?",
-    "¿Cuál es tu comida favorita?",
+    "Â¿CuÃ¡l es el nombre de tu mascota?",
+    "Â¿CuÃ¡l es tu ciudad de nacimiento?",
+    "Â¿CuÃ¡l era el nombre de tu colegio?",
+    "Â¿CuÃ¡l es tu comida favorita?",
   ];
 
   // =========================================================
@@ -178,14 +176,16 @@ const AdminPanel = () => {
         throw new Error("No fue posible obtener los usuarios.");
       }
 
-      const datos = await respuesta.json();
-
-      setUsuarios(Array.isArray(datos) ? datos : []);
+      const datos = await respuesta.json();setUsuarios(
+  Array.isArray(datos)
+    ? datos.filter((usuario) => usuario.estado === true)
+    : []
+   );
     } catch (error) {
       console.error("Error obteniendo usuarios:", error);
 
       setErrorUsuarios(
-        "No fue posible cargar los usuarios. Verifica que el servidor esté funcionando."
+        "No fue posible cargar los usuarios. Verifica que el servidor estÃ© funcionando."
       );
     } finally {
       setCargandoUsuarios(false);
@@ -193,21 +193,6 @@ const AdminPanel = () => {
   };
 
   // =========================================================
-  // OBTENER SALAS
-  // =========================================================
-
-  const obtenerSalas = async () => {
-    try {
-      const respuesta = await fetch(API_BASE_URL + '/api/salas');
-      if (!respuesta.ok) { throw new Error('No fue posible obtener las salas.'); }
-      const datos = await respuesta.json();
-      setSalas(Array.isArray(datos) ? datos : []);
-    } catch (error) {
-      console.error('Error cargando salas:', error);
-      setSalas([]);
-    }
-  };
-
   // OBTENER RESERVAS
   // =========================================================
 
@@ -231,7 +216,7 @@ const AdminPanel = () => {
       console.error("Error obteniendo reservas:", error);
 
       setErrorReservas(
-        "No fue posible cargar las reservas. Verifica que el servidor esté funcionando."
+        "No fue posible cargar las reservas. Verifica que el servidor estÃ© funcionando."
       );
     } finally {
       setCargandoReservas(false);
@@ -264,7 +249,7 @@ const AdminPanel = () => {
   };
 
   // =========================================================
-  // OBTENER CONFIGURACIÃ“N
+  // OBTENER CONFIGURACIÃƒâ€œN
   // =========================================================
 
   const obtenerConfiguracion = () => {
@@ -291,7 +276,7 @@ const AdminPanel = () => {
         });
       }
     } catch (error) {
-      console.error("Error cargando configuración:", error);
+      console.error("Error cargando configuraciÃ³n:", error);
     }
   };
 
@@ -308,7 +293,7 @@ const AdminPanel = () => {
   }, []);
 
   // =========================================================
-  // CREAR NOTIFICACIÃ“N
+  // CREAR NOTIFICACIÃƒâ€œN
   // =========================================================
 
   const crearNotificacion = ({
@@ -338,7 +323,7 @@ const AdminPanel = () => {
   };
 
   // =========================================================
-  // GUARDAR CONFIGURACIÃ“N
+  // GUARDAR CONFIGURACIÃƒâ€œN
   // =========================================================
 
   const guardarConfiguracion = (nuevaConfiguracion) => {
@@ -350,9 +335,9 @@ const AdminPanel = () => {
     );
 
     crearNotificacion({
-      titulo: "Configuración actualizada",
+      titulo: "ConfiguraciÃ³n actualizada",
       mensaje:
-        "La configuración de SmartReserve fue actualizada correctamente.",
+        "La configuraciÃ³n de SmartReserve fue actualizada correctamente.",
       tipo: "success",
     });
   };
@@ -364,13 +349,12 @@ const AdminPanel = () => {
   useEffect(() => {
     obtenerUsuarios();
     obtenerReservas();
-    obtenerSalas();
     obtenerNotificaciones();
     obtenerConfiguracion();
   }, []);
 
   // =========================================================
-  // ESTADÃSTICAS
+  // ESTADÃƒÂSTICAS
   // =========================================================
 
   const totalUsuarios = usuarios.length;
@@ -392,7 +376,7 @@ const AdminPanel = () => {
   ).length;
 
   // =========================================================
-  // CAMBIAR SECCIÃ“N
+  // CAMBIAR SECCIÃƒâ€œN
   // =========================================================
 
   const cambiarSeccion = (nuevaSeccion) => {
@@ -437,7 +421,7 @@ const AdminPanel = () => {
     }
 
     if (nuevaClave !== confirmarClave) {
-      alert("Las contraseñas no coinciden.");
+      alert("Las contraseÃƒÂ±as no coinciden.");
       return;
     }
 
@@ -473,7 +457,7 @@ const AdminPanel = () => {
 
       crearNotificacion({
         titulo: "Nuevo usuario",
-        mensaje: `Se creó el usuario ${nuevoUsuario.trim()} correctamente.`,
+        mensaje: `Se creÃ³ el usuario ${nuevoUsuario.trim()} correctamente.`,
         tipo: "success",
       });
 
@@ -553,12 +537,16 @@ const AdminPanel = () => {
       }
 
       setUsuarios((actuales) =>
-        actuales.map((usuario) =>
-          usuario.id === usuarioEditando.id
-            ? datos.usuario
-            : usuario
-        )
-      );
+  nuevoEstado
+    ? actuales.map((item) =>
+        item.id === usuario.id
+          ? datos.usuario
+          : item
+      )
+    : actuales.filter(
+        (item) => item.id !== usuario.id
+      )
+);
 
       crearNotificacion({
         titulo: "Usuario actualizado",
@@ -655,7 +643,7 @@ const AdminPanel = () => {
       : "desactivar";
 
     const confirmado = window.confirm(
-      `¿Deseas ${accion} al usuario ${usuario.nombre}?`
+      `Â¿Deseas ${accion} al usuario ${usuario.nombre}?`
     );
 
     if (!confirmado) return;
@@ -684,13 +672,16 @@ const AdminPanel = () => {
       }
 
       setUsuarios((actuales) =>
-        actuales.map((item) =>
-          item.id === usuario.id
-            ? datos.usuario
-            : item
-        )
-      );
-
+  nuevoEstado
+    ? actuales.map((item) =>
+        item.id === usuario.id
+          ? datos.usuario
+          : item
+      )
+    : actuales.filter(
+        (item) => item.id !== usuario.id
+      )
+);
       crearNotificacion({
         titulo: nuevoEstado
           ? "Usuario activado"
@@ -754,10 +745,6 @@ const AdminPanel = () => {
     }));
   };
 
-  const verificarDisponibilidadSala = () => { const { sala, fecha, horaInicio, horaFin } = nuevaReserva; if (!sala || !fecha || !horaInicio || !horaFin) { setEstadoSala(""); return; } const ocupada = reservas.some((reserva) => { if (reserva.estado === "Cancelada") return false; if (reserva.sala !== sala) return false; if (reserva.fecha !== fecha) return false; return horaInicio < reserva.horaFin && horaFin > reserva.horaInicio; }); setEstadoSala(ocupada ? "ocupada" : "disponible"); };
-
-  useEffect(() => { verificarDisponibilidadSala(); }, [nuevaReserva.sala, nuevaReserva.fecha, nuevaReserva.horaInicio, nuevaReserva.horaFin, reservas]);
-
   const crearReserva = async (e) => {
     e.preventDefault();
 
@@ -782,7 +769,7 @@ const AdminPanel = () => {
 
     if (horaFin <= horaInicio) {
       alert(
-        "La hora de finalización debe ser posterior a la hora de inicio."
+        "La hora de finalizaciÃ³n debe ser posterior a la hora de inicio."
       );
       return;
     }
@@ -828,7 +815,7 @@ const AdminPanel = () => {
         mensaje: `El administrador ${
           usuarioActual.nombre ||
           "Administrador"
-        } reservó ${sala} para el ${fecha} de ${horaInicio} a ${horaFin}.`,
+        } reservÃ³ ${sala} para el ${fecha} de ${horaInicio} a ${horaFin}.`,
         tipo: "success",
       });
 
@@ -856,7 +843,7 @@ const AdminPanel = () => {
 
   const cancelarReserva = async (reserva) => {
     const confirmado = window.confirm(
-      `¿Deseas cancelar la reserva #${reserva.id} de la sala ${reserva.sala}?`
+      `Â¿Deseas cancelar la reserva #${reserva.id} de la sala ${reserva.sala}?`
     );
 
     if (!confirmado) return;
@@ -917,10 +904,10 @@ const AdminPanel = () => {
 
   /*
    * IMPORTANTE:
-   * Al hacer clic en una notificación:
+   * Al hacer clic en una notificaciÃ³n:
    * 1. Se elimina de la pantalla.
    * 2. Se elimina de localStorage.
-   * 3. El contador se actualiza automáticamente.
+   * 3. El contador se actualiza automÃ¡ticamente.
    */
   const marcarNotificacionLeida = (id) => {
     setNotificaciones((actuales) => {
@@ -939,7 +926,7 @@ const AdminPanel = () => {
   };
 
   /*
-   * El botón "Marcar todas" limpia completamente
+   * El botÃ³n "Marcar todas" limpia completamente
    * las notificaciones.
    */
   const marcarTodasLeidas = () => {
@@ -990,7 +977,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>Administración</span>
+            <span>AdministraciÃ³n</span>
 
             <h2>
               Panel de administrador
@@ -1031,7 +1018,7 @@ const AdminPanel = () => {
         <div className="admin-current-time">
 
           <div className="admin-time-icon">
-            <span>â—</span>
+            <span>Ã¢â€”Â</span>
           </div>
 
           <div>
@@ -1138,8 +1125,8 @@ const AdminPanel = () => {
             <div className="admin-card-heading">
 
               <div>
-                <span>GESTIÃ“N</span>
-                <h3>Acciones rápidas</h3>
+                <span>GESTIÃƒâ€œN</span>
+                <h3>Acciones rÃ¡pidas</h3>
               </div>
 
             </div>
@@ -1199,7 +1186,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>Administración</span>
+            <span>AdministraciÃ³n</span>
 
             <h2>Usuarios</h2>
 
@@ -1443,7 +1430,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>Administración</span>
+            <span>AdministraciÃ³n</span>
 
             <h2>Reservas</h2>
 
@@ -1635,7 +1622,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>Administración</span>
+            <span>AdministraciÃ³n</span>
 
             <h2>Notificaciones</h2>
 
@@ -1673,7 +1660,7 @@ const AdminPanel = () => {
 
               <p>
                 Las nuevas actividades
-                aparecerán aquí.
+                aparecerÃ¡n aquÃ­.
               </p>
 
             </div>
@@ -1691,7 +1678,7 @@ const AdminPanel = () => {
                       notificacion.id
                     )
                   }
-                  title="Haz clic para eliminar esta notificación"
+                  title="Haz clic para eliminar esta notificaciÃ³n"
                 >
 
                   <div className="admin-notification-icon">
@@ -1774,20 +1761,20 @@ const AdminPanel = () => {
   }
 };
   // =========================================================
-  // CERRAR SESIÃ“N
+  // CERRAR SESIÃƒâ€œN
   // =========================================================
 
   const cerrarSesion = () => {
 
     const confirmado = window.confirm(
-      "¿Deseas cerrar sesión?"
+      "Â¿Deseas cerrar sesiÃ³n?"
     );
 
     if (!confirmado) return;
 
     localStorage.removeItem("usuario");
 
-    window.location.href = "/";
+    window.location.href = "/login";
   };
 
   // =========================================================
@@ -1826,7 +1813,7 @@ const AdminPanel = () => {
         </div>
 
         <div className="admin-sidebar-section-title">
-          MENÚ PRINCIPAL
+          MENÃš PRINCIPAL
         </div>
 
         <nav className="admin-navigation">
@@ -1869,7 +1856,7 @@ const AdminPanel = () => {
               cambiarSeccion("reservas")
             }
           >
-                        <FaCalendarAlt />
+         <FaCalendarAlt />
             <span>Reservas</span>
           </button>
 
@@ -1925,7 +1912,7 @@ const AdminPanel = () => {
             }
           >
             <FaCog />
-            <span>Configuración</span>
+            <span>ConfiguraciÃ³n</span>
           </button>
 
         </nav>
@@ -1960,7 +1947,7 @@ const AdminPanel = () => {
             onClick={cerrarSesion}
           >
             <FaSignOutAlt />
-            Cerrar sesión
+            Cerrar sesiÃ³n
           </button>
 
         </div>
@@ -1991,7 +1978,7 @@ const AdminPanel = () => {
             <div className="admin-topbar-title">
 
               <span>
-                Sistema de gestión
+                Sistema de gestiÃ³n
               </span>
 
               <h1>
@@ -2112,7 +2099,7 @@ const AdminPanel = () => {
                             notificacion.id
                           )
                         }
-                        title="Haz clic para eliminar esta notificación"
+                        title="Haz clic para eliminar esta notificaciÃ³n"
                       >
 
                         <div className="dropdown-notification-icon">
@@ -2189,7 +2176,7 @@ const AdminPanel = () => {
 
               <div>
 
-                <span>Administración</span>
+                <span>AdministraciÃ³n</span>
 
                 <h2>
                   Crear usuario
@@ -2244,12 +2231,12 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      contraseña
+                      ContraseÃƒÂ±a
                     </label>
 
                     <input
                       type="password"
-                      placeholder="Ingresa la contraseña"
+                      placeholder="Ingresa la contraseÃƒÂ±a"
                       value={
                         nuevaClave
                       }
@@ -2266,12 +2253,12 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      Confirmar contraseña
+                      Confirmar contraseÃƒÂ±a
                     </label>
 
                     <input
                       type="password"
-                      placeholder="Confirma la contraseña"
+                      placeholder="Confirma la contraseÃƒÂ±a"
                       value={
                         confirmarClave
                       }
@@ -2331,10 +2318,10 @@ const AdminPanel = () => {
                       </strong>
 
                       <span>
-                        Estos datos serán
+                        Estos datos serÃ¡n
                         utilizados para
                         recuperar la
-                        contraseña.
+                        contraseÃƒÂ±a.
                       </span>
 
                     </div>
@@ -2467,14 +2454,14 @@ const AdminPanel = () => {
 
                 <div>
 
-                  <span>Administración</span>
+                  <span>AdministraciÃ³n</span>
 
                   <h2>
                     Editar usuario
                   </h2>
 
                   <p>
-                    Modifica la información
+                    Modifica la informaciÃ³n
                     del usuario.
                   </p>
 
@@ -2628,7 +2615,7 @@ const AdminPanel = () => {
 
               <div>
 
-                <span>Administración</span>
+                <span>AdministraciÃ³n</span>
 
                 <h2>
                   Nueva reserva
@@ -2694,11 +2681,21 @@ const AdminPanel = () => {
                       Selecciona una sala
                     </option>
 
-                    {salas.filter((sala) => sala.estado).map((sala) => (
-                      <option key={sala.id} value={sala.nombre}>
-                        {sala.nombre}
-                      </option>
-                    ))}
+                    <option value="Sala de Reuniones">
+                      Sala de Reuniones
+                    </option>
+
+                    <option value="Sala Ejecutiva">
+                      Sala Ejecutiva
+                    </option>
+
+                    <option value="Auditorio">
+                      Auditorio
+                    </option>
+
+                    <option value="Sala de Conferencias">
+                      Sala de Conferencias
+                    </option>
 
                   </select>
 
@@ -2754,7 +2751,7 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      Hora de finalización
+                      Hora de finalizaciÃ³n
                     </label>
 
                     <input
@@ -2782,11 +2779,14 @@ const AdminPanel = () => {
                   <div>
 
                     <strong>
-                      Verificación automática
+                      VerificaciÃ³n automÃ¡tica
                     </strong>
 
                     <span>
-                      {estadoSala === 'ocupada' ? '🔴 La sala ya está ocupada en ese horario.' : estadoSala === 'disponible' ? '🟢 La sala está disponible para ese horario.' : 'Selecciona sala, fecha y horario para verificar disponibilidad.'}
+                      El sistema verificarÃ¡
+                      automÃ¡ticamente que
+                      la sala no estÃ© ocupada
+                      en ese horario.
                     </span>
 
                   </div>
@@ -2804,7 +2804,7 @@ const AdminPanel = () => {
                     cerrarCrearReserva
                   }
                   disabled={
-                    creandoReserva || estadoSala === "ocupada"
+                    creandoReserva
                   }
                 >
                   <FaTimes />
@@ -2815,7 +2815,7 @@ const AdminPanel = () => {
                   type="submit"
                   className="primary-button"
                   disabled={
-                    creandoReserva || estadoSala === "ocupada"
+                    creandoReserva
                   }
                 >
 
@@ -2842,10 +2842,6 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
-
-
-
-
 
 
 
