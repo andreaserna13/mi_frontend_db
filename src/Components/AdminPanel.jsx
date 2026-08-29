@@ -18,18 +18,18 @@ import {
   FaShieldAlt,
   FaSignOutAlt,
   FaBars,
-  FaClipboardList,
   FaCheckCircle,
   FaExclamationTriangle,
   FaUserCog,
 } from "react-icons/fa";
+
 import AdminConfiguracion from "./AdminConfiguracion";
 import GestionSalas from "./GestionSalas";
 import "./AdminPanel.css";
 
 const AdminPanel = () => {
   // =========================================================
-  // CONFIGURACIÃƒâ€œN
+  // CONFIGURACIÓN
   // =========================================================
 
   const API_BASE_URL =
@@ -138,7 +138,7 @@ const AdminPanel = () => {
   const [creandoReserva, setCreandoReserva] = useState(false);
 
   // =========================================================
-  // CONFIGURACIÃƒâ€œN
+  // CONFIGURACIÓN
   // =========================================================
 
   const [configuracion, setConfiguracion] = useState({
@@ -153,10 +153,10 @@ const AdminPanel = () => {
   // =========================================================
 
   const preguntasSeguridad = [
-    "Â¿CuÃ¡l es el nombre de tu mascota?",
-    "Â¿CuÃ¡l es tu ciudad de nacimiento?",
-    "Â¿CuÃ¡l era el nombre de tu colegio?",
-    "Â¿CuÃ¡l es tu comida favorita?",
+    "¿Cuál es el nombre de tu mascota?",
+    "¿Cuál es tu ciudad de nacimiento?",
+    "¿Cuál era el nombre de tu colegio?",
+    "¿Cuál es tu comida favorita?",
   ];
 
   // =========================================================
@@ -176,16 +176,18 @@ const AdminPanel = () => {
         throw new Error("No fue posible obtener los usuarios.");
       }
 
-      const datos = await respuesta.json();setUsuarios(
-  Array.isArray(datos)
-    ? datos.filter((usuario) => usuario.estado === true)
-    : []
-   );
+      const datos = await respuesta.json();
+
+      setUsuarios(
+        Array.isArray(datos)
+          ? datos.filter((usuario) => usuario.estado === true)
+          : []
+      );
     } catch (error) {
       console.error("Error obteniendo usuarios:", error);
 
       setErrorUsuarios(
-        "No fue posible cargar los usuarios. Verifica que el servidor estÃ© funcionando."
+        "No fue posible cargar los usuarios. Verifica que el servidor esté funcionando."
       );
     } finally {
       setCargandoUsuarios(false);
@@ -216,7 +218,7 @@ const AdminPanel = () => {
       console.error("Error obteniendo reservas:", error);
 
       setErrorReservas(
-        "No fue posible cargar las reservas. Verifica que el servidor estÃ© funcionando."
+        "No fue posible cargar las reservas. Verifica que el servidor esté funcionando."
       );
     } finally {
       setCargandoReservas(false);
@@ -249,7 +251,7 @@ const AdminPanel = () => {
   };
 
   // =========================================================
-  // OBTENER CONFIGURACIÃƒâ€œN
+  // OBTENER CONFIGURACIÓN
   // =========================================================
 
   const obtenerConfiguracion = () => {
@@ -276,7 +278,7 @@ const AdminPanel = () => {
         });
       }
     } catch (error) {
-      console.error("Error cargando configuraciÃ³n:", error);
+      console.error("Error cargando configuración:", error);
     }
   };
 
@@ -293,7 +295,7 @@ const AdminPanel = () => {
   }, []);
 
   // =========================================================
-  // CREAR NOTIFICACIÃƒâ€œN
+  // CREAR NOTIFICACIÓN
   // =========================================================
 
   const crearNotificacion = ({
@@ -323,7 +325,7 @@ const AdminPanel = () => {
   };
 
   // =========================================================
-  // GUARDAR CONFIGURACIÃƒâ€œN
+  // GUARDAR CONFIGURACIÓN
   // =========================================================
 
   const guardarConfiguracion = (nuevaConfiguracion) => {
@@ -335,9 +337,9 @@ const AdminPanel = () => {
     );
 
     crearNotificacion({
-      titulo: "ConfiguraciÃ³n actualizada",
+      titulo: "Configuración actualizada",
       mensaje:
-        "La configuraciÃ³n de SmartReserve fue actualizada correctamente.",
+        "La configuración de SmartReserve fue actualizada correctamente.",
       tipo: "success",
     });
   };
@@ -354,7 +356,7 @@ const AdminPanel = () => {
   }, []);
 
   // =========================================================
-  // ESTADÃƒÂSTICAS
+  // ESTADÍSTICAS
   // =========================================================
 
   const totalUsuarios = usuarios.length;
@@ -376,7 +378,7 @@ const AdminPanel = () => {
   ).length;
 
   // =========================================================
-  // CAMBIAR SECCIÃƒâ€œN
+  // CAMBIAR SECCIÓN
   // =========================================================
 
   const cambiarSeccion = (nuevaSeccion) => {
@@ -421,7 +423,7 @@ const AdminPanel = () => {
     }
 
     if (nuevaClave !== confirmarClave) {
-      alert("Las contraseÃƒÂ±as no coinciden.");
+      alert("Las contraseñas no coinciden.");
       return;
     }
 
@@ -457,7 +459,7 @@ const AdminPanel = () => {
 
       crearNotificacion({
         titulo: "Nuevo usuario",
-        mensaje: `Se creÃ³ el usuario ${nuevoUsuario.trim()} correctamente.`,
+        mensaje: `Se creó el usuario ${nuevoUsuario.trim()} correctamente.`,
         tipo: "success",
       });
 
@@ -536,17 +538,20 @@ const AdminPanel = () => {
         );
       }
 
+      const usuarioActualizado =
+        datos.usuario || {
+          ...usuarioEditando,
+          nombre: nombreEditando.trim(),
+          tipoUsuario: rolEditando,
+        };
+
       setUsuarios((actuales) =>
-  nuevoEstado
-    ? actuales.map((item) =>
-        item.id === usuario.id
-          ? datos.usuario
-          : item
-      )
-    : actuales.filter(
-        (item) => item.id !== usuario.id
-      )
-);
+        actuales.map((item) =>
+          item.id === usuarioEditando.id
+            ? usuarioActualizado
+            : item
+        )
+      );
 
       crearNotificacion({
         titulo: "Usuario actualizado",
@@ -606,7 +611,10 @@ const AdminPanel = () => {
       setUsuarios((actuales) =>
         actuales.map((item) =>
           item.id === usuario.id
-            ? datos.usuario
+            ? datos.usuario || {
+                ...item,
+                tipoUsuario: nuevoRol,
+              }
             : item
         )
       );
@@ -643,7 +651,7 @@ const AdminPanel = () => {
       : "desactivar";
 
     const confirmado = window.confirm(
-      `Â¿Deseas ${accion} al usuario ${usuario.nombre}?`
+      `¿Deseas ${accion} al usuario ${usuario.nombre}?`
     );
 
     if (!confirmado) return;
@@ -672,16 +680,20 @@ const AdminPanel = () => {
       }
 
       setUsuarios((actuales) =>
-  nuevoEstado
-    ? actuales.map((item) =>
-        item.id === usuario.id
-          ? datos.usuario
-          : item
-      )
-    : actuales.filter(
-        (item) => item.id !== usuario.id
-      )
-);
+        nuevoEstado
+          ? actuales.map((item) =>
+              item.id === usuario.id
+                ? datos.usuario || {
+                    ...item,
+                    estado: nuevoEstado,
+                  }
+                : item
+            )
+          : actuales.filter(
+              (item) => item.id !== usuario.id
+            )
+      );
+
       crearNotificacion({
         titulo: nuevoEstado
           ? "Usuario activado"
@@ -712,6 +724,8 @@ const AdminPanel = () => {
         error.message ||
           "No fue posible cambiar el estado."
       );
+
+      obtenerUsuarios();
     }
   };
 
@@ -769,7 +783,7 @@ const AdminPanel = () => {
 
     if (horaFin <= horaInicio) {
       alert(
-        "La hora de finalizaciÃ³n debe ser posterior a la hora de inicio."
+        "La hora de finalización debe ser posterior a la hora de inicio."
       );
       return;
     }
@@ -815,7 +829,7 @@ const AdminPanel = () => {
         mensaje: `El administrador ${
           usuarioActual.nombre ||
           "Administrador"
-        } reservÃ³ ${sala} para el ${fecha} de ${horaInicio} a ${horaFin}.`,
+        } reservó ${sala} para el ${fecha} de ${horaInicio} a ${horaFin}.`,
         tipo: "success",
       });
 
@@ -843,7 +857,7 @@ const AdminPanel = () => {
 
   const cancelarReserva = async (reserva) => {
     const confirmado = window.confirm(
-      `Â¿Deseas cancelar la reserva #${reserva.id} de la sala ${reserva.sala}?`
+      `¿Deseas cancelar la reserva #${reserva.id} de la sala ${reserva.sala}?`
     );
 
     if (!confirmado) return;
@@ -902,13 +916,6 @@ const AdminPanel = () => {
   // NOTIFICACIONES
   // =========================================================
 
-  /*
-   * IMPORTANTE:
-   * Al hacer clic en una notificaciÃ³n:
-   * 1. Se elimina de la pantalla.
-   * 2. Se elimina de localStorage.
-   * 3. El contador se actualiza automÃ¡ticamente.
-   */
   const marcarNotificacionLeida = (id) => {
     setNotificaciones((actuales) => {
       const nuevas = actuales.filter(
@@ -925,10 +932,6 @@ const AdminPanel = () => {
     });
   };
 
-  /*
-   * El botÃ³n "Marcar todas" limpia completamente
-   * las notificaciones.
-   */
   const marcarTodasLeidas = () => {
     setNotificaciones([]);
 
@@ -966,6 +969,9 @@ const AdminPanel = () => {
       }
     );
 
+  // Evita advertencia de variable no utilizada
+  void fechaFormateada;
+
   // =========================================================
   // INICIO
   // =========================================================
@@ -977,7 +983,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>AdministraciÃ³n</span>
+            <span>Administración</span>
 
             <h2>
               Panel de administrador
@@ -1018,7 +1024,7 @@ const AdminPanel = () => {
         <div className="admin-current-time">
 
           <div className="admin-time-icon">
-            <span>Ã¢â€”Â</span>
+            <span>●</span>
           </div>
 
           <div>
@@ -1125,8 +1131,8 @@ const AdminPanel = () => {
             <div className="admin-card-heading">
 
               <div>
-                <span>GESTIÃƒâ€œN</span>
-                <h3>Acciones rÃ¡pidas</h3>
+                <span>GESTIÓN</span>
+                <h3>Acciones rápidas</h3>
               </div>
 
             </div>
@@ -1186,7 +1192,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>AdministraciÃ³n</span>
+            <span>Administración</span>
 
             <h2>Usuarios</h2>
 
@@ -1430,7 +1436,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>AdministraciÃ³n</span>
+            <span>Administración</span>
 
             <h2>Reservas</h2>
 
@@ -1622,7 +1628,7 @@ const AdminPanel = () => {
         <div className="admin-section-header">
 
           <div>
-            <span>AdministraciÃ³n</span>
+            <span>Administración</span>
 
             <h2>Notificaciones</h2>
 
@@ -1660,7 +1666,7 @@ const AdminPanel = () => {
 
               <p>
                 Las nuevas actividades
-                aparecerÃ¡n aquÃ­.
+                aparecerán aquí.
               </p>
 
             </div>
@@ -1678,7 +1684,7 @@ const AdminPanel = () => {
                       notificacion.id
                     )
                   }
-                  title="Haz clic para eliminar esta notificaciÃ³n"
+                  title="Haz clic para eliminar esta notificación"
                 >
 
                   <div className="admin-notification-icon">
@@ -1727,47 +1733,50 @@ const AdminPanel = () => {
     );
   };
 
- const renderContenido = () => {
-
-  switch (section) {
-
-    case "usuarios":
-      return renderUsuarios();
-
-    case "reservas":
-      return renderReservas();
-
-    case "salas":
-      return (
-        <GestionSalas
-          agregarNotificacion={crearNotificacion}
-        />
-      );
-
-    case "notificaciones":
-      return renderNotificaciones();
-
-    case "configuracion":
-      return (
-        <AdminConfiguracion
-          usuario={usuarioActual}
-          agregarNotificacion={crearNotificacion}
-        />
-      );
-
-    case "inicio":
-    default:
-      return renderInicio();
-  }
-};
   // =========================================================
-  // CERRAR SESIÃƒâ€œN
+  // CONTENIDO
+  // =========================================================
+
+  const renderContenido = () => {
+    switch (section) {
+
+      case "usuarios":
+        return renderUsuarios();
+
+      case "reservas":
+        return renderReservas();
+
+      case "salas":
+        return (
+          <GestionSalas
+            agregarNotificacion={crearNotificacion}
+          />
+        );
+
+      case "notificaciones":
+        return renderNotificaciones();
+
+      case "configuracion":
+        return (
+          <AdminConfiguracion
+            usuario={usuarioActual}
+            agregarNotificacion={crearNotificacion}
+          />
+        );
+
+      case "inicio":
+      default:
+        return renderInicio();
+    }
+  };
+
+  // =========================================================
+  // CERRAR SESIÓN
   // =========================================================
 
   const cerrarSesion = () => {
-
     const confirmado = window.confirm(
-      "Â¿Deseas cerrar sesiÃ³n?"
+      "¿Deseas cerrar sesión?"
     );
 
     if (!confirmado) return;
@@ -1813,7 +1822,7 @@ const AdminPanel = () => {
         </div>
 
         <div className="admin-sidebar-section-title">
-          MENÃš PRINCIPAL
+          MENÚ PRINCIPAL
         </div>
 
         <nav className="admin-navigation">
@@ -1856,7 +1865,7 @@ const AdminPanel = () => {
               cambiarSeccion("reservas")
             }
           >
-         <FaCalendarAlt />
+            <FaCalendarAlt />
             <span>Reservas</span>
           </button>
 
@@ -1912,7 +1921,7 @@ const AdminPanel = () => {
             }
           >
             <FaCog />
-            <span>ConfiguraciÃ³n</span>
+            <span>Configuración</span>
           </button>
 
         </nav>
@@ -1947,7 +1956,7 @@ const AdminPanel = () => {
             onClick={cerrarSesion}
           >
             <FaSignOutAlt />
-            Cerrar sesiÃ³n
+            Cerrar sesión
           </button>
 
         </div>
@@ -1978,7 +1987,7 @@ const AdminPanel = () => {
             <div className="admin-topbar-title">
 
               <span>
-                Sistema de gestiÃ³n
+                Sistema de gestión
               </span>
 
               <h1>
@@ -2099,7 +2108,7 @@ const AdminPanel = () => {
                             notificacion.id
                           )
                         }
-                        title="Haz clic para eliminar esta notificaciÃ³n"
+                        title="Haz clic para eliminar esta notificación"
                       >
 
                         <div className="dropdown-notification-icon">
@@ -2176,7 +2185,7 @@ const AdminPanel = () => {
 
               <div>
 
-                <span>AdministraciÃ³n</span>
+                <span>Administración</span>
 
                 <h2>
                   Crear usuario
@@ -2231,12 +2240,12 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      ContraseÃƒÂ±a
+                      Contraseña
                     </label>
 
                     <input
                       type="password"
-                      placeholder="Ingresa la contraseÃƒÂ±a"
+                      placeholder="Ingresa la contraseña"
                       value={
                         nuevaClave
                       }
@@ -2253,12 +2262,12 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      Confirmar contraseÃƒÂ±a
+                      Confirmar contraseña
                     </label>
 
                     <input
                       type="password"
-                      placeholder="Confirma la contraseÃƒÂ±a"
+                      placeholder="Confirma la contraseña"
                       value={
                         confirmarClave
                       }
@@ -2318,10 +2327,10 @@ const AdminPanel = () => {
                       </strong>
 
                       <span>
-                        Estos datos serÃ¡n
+                        Estos datos serán
                         utilizados para
                         recuperar la
-                        contraseÃƒÂ±a.
+                        contraseña.
                       </span>
 
                     </div>
@@ -2454,14 +2463,14 @@ const AdminPanel = () => {
 
                 <div>
 
-                  <span>AdministraciÃ³n</span>
+                  <span>Administración</span>
 
                   <h2>
                     Editar usuario
                   </h2>
 
                   <p>
-                    Modifica la informaciÃ³n
+                    Modifica la información
                     del usuario.
                   </p>
 
@@ -2615,7 +2624,7 @@ const AdminPanel = () => {
 
               <div>
 
-                <span>AdministraciÃ³n</span>
+                <span>Administración</span>
 
                 <h2>
                   Nueva reserva
@@ -2751,7 +2760,7 @@ const AdminPanel = () => {
                   <div className="admin-form-group">
 
                     <label>
-                      Hora de finalizaciÃ³n
+                      Hora de finalización
                     </label>
 
                     <input
@@ -2779,13 +2788,13 @@ const AdminPanel = () => {
                   <div>
 
                     <strong>
-                      VerificaciÃ³n automÃ¡tica
+                      Verificación automática
                     </strong>
 
                     <span>
-                      El sistema verificarÃ¡
-                      automÃ¡ticamente que
-                      la sala no estÃ© ocupada
+                      El sistema verificará
+                      automáticamente que
+                      la sala no esté ocupada
                       en ese horario.
                     </span>
 
@@ -2842,8 +2851,3 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
-
-
-
-
-

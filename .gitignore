@@ -4,3 +4,21 @@ dist/
 
 
 .vercel
+src_ANTES_CORREGIR_UTF8/
+**/*_ANTES_*.jsx
+**/*_ANTES_*.css
+**/*.BACKUP
+**/*.backup
+**/*.backup*
+**/*.antes-*
+**/*.danado*
+AdminPanel.jsx.zip
+AdminPanel_actual.txt
+registro_antiguo.txt
+src/Components/*BACKUP*
+src/Components/*ANTES*
+src/Components/*antes*
+src/Components/*funcional*
+src/Components/*pre-restauracion*
+src/Components/AdminPanel.actual.jsx
+src/Components/AdminPanel_PRE_SALAS_FINAL.jsx

@@ -77,9 +77,20 @@ function Configuracion() {
    * ============================================================
    */
   const cerrarSesion = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+  const notificacionesVistas =
+    localStorage.getItem("notificacionesVistas");
+
+  localStorage.clear();
+
+  if (notificacionesVistas) {
+    localStorage.setItem(
+      "notificacionesVistas",
+      notificacionesVistas
+    );
+  }
+
+  navigate("/");
+};
 
   /*
    * ============================================================
